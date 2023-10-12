@@ -16,6 +16,8 @@ The hardware I use is the following:
 ![esp32s3_cpu](images/esp32s3_cpu.png)
 
 The WeMos ESP32S3 CPU comes with 4 MBytes of flash and 2 MBytes of PSRAM. The pinout is shown below:
+![esp32s3_pinout](images/esp32s3_pinout.png)
 
+A user LED in form of a ws2812 rgb LED is available on GPIO 47. 
 
 # This is work in progress and some of the programs may not work yet 
