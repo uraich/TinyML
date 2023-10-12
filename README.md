@@ -14,6 +14,7 @@ In addition the _magic wand_ examples from the [TinyML book](https://zlib.pub/bo
 The tflite micro repository now uses _bazel_ to build its programs. Some of the jupyter notebooks described in the TinyML book are not available any longer. I rebuilt these notbooks and included them in this repository.
 The hardware I use is thee following:
 ![esp32s3_cpu](images/esp32s3_cpu.png)
+
 The WeMos ESP32S3 CPU comes with 4 MBytes of flash and 2 MBytes of PSRAM. The pinout is shown below:
 
 
