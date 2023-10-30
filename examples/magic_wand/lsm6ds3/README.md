@@ -5,4 +5,5 @@ The LSM6DS3 driver consists of several files:
 * LSM6DS3.py: Implements all the LSm6DS3 functionality not depending on the type of hardware interface used
 
 lsm6ds_test.py accesses some of the methods while the FIFO is not in use
-lsm6ds6_fifo is similar to lsm6ds3_test.py but uses the FIFO
+
+lsm6ds6_fifo.py is similar to lsm6ds3_test.py but uses the FIFO
