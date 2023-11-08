@@ -1,0 +1,1 @@
+static_images/sample_images/no_person.h
