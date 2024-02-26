@@ -126,156 +126,159 @@ Content-Type: image/jpeg
 async def control(req):
   print("control route")
   # yield from picoweb.start_response(resp, content_type = "text/html")
-  print(req.parse_qs())
+  # print(req.parse_qs())
   
-  print('request method: ',req.method)
-  print('request.form: ',req.form)
+  # print('request method: ',req.method)
+  # print('client address: ',req.client_addr)
+  # print('request.url: ',req.url)
+  # print('request.query_string: ',req.query_string)
+  # print('request.args: ',req.args)
   
-  if req.form["var"] == "framesize":
-    framesize = int(req.form["val"])
+  if req.args["var"] == "framesize":
+    framesize = int(req.args["val"])
     print("Setting frame size to: %d"%framesize)
     camera.set_framesize(framesize)
     
-  if req.form["var"] == "quality":
-    quality = int(req.form["val"])
+  if req.args["var"] == "quality":
+    quality = int(req.args["val"])
     print("Setting quality to %d"%quality)
     camera.set_quality(quality)
     
-  if req.form["var"] == "brightness":
-    brightness = int(req.form["val"])
+  if req.args["var"] == "brightness":
+    brightness = int(req.args["val"])
     print("Setting brightness to %d"%brightness)
     camera.set_brightness(brightness)
     
-  if req.form["var"] == "contrast":
-    contrast = int(req.form["val"])
+  if req.args["var"] == "contrast":
+    contrast = int(req.args["val"])
     print("Setting contrast to: %d"%contrast)
     camera.set_contrast(contrast)
     
-  if req.form["var"] == "saturation":
-    saturation = int(req.form["val"])
+  if req.args["var"] == "saturation":
+    saturation = int(req.args["val"])
     print("Setting saturation to: %d",saturation)
     camera.set_saturation(saturation)
 
-  if req.form["var"] == "special_effect":
-    effect = int(req.form["val"])
+  if req.args["var"] == "special_effect":
+    effect = int(req.args["val"])
     print("Setting special effect: %d"%effect)
     camera.set_speffect(effect)
     
-  if req.form["var"] == "awb":
-    awb = int(req.form["val"])
+  if req.args["var"] == "awb":
+    awb = int(req.args["val"])
     if awb:
       print("Enabling white ballance")
     else:
       print("Disabling white ballance")
     camera.set_whitebal(awb)
     
-  if req.form["var"] == "awb_gain":
-    awb_gain = int(req.form["val"])
+  if req.args["var"] == "awb_gain":
+    awb_gain = int(req.args["val"])
     print("Setting white ballance gain to %d"%awb)
     camera.set_awb_gain(awb_gain)
     
-  if req.form["var"] == "wb_mode":
-    wb_mode = int(req.form["val"])
+  if req.args["var"] == "wb_mode":
+    wb_mode = int(req.args["val"])
     print("Setting white ballance mode to %d"%wb_mode)
     camera.set_wb_mode(wb_mode)
     
-  if req.form["var"] == "aec":
-    aec = int(req.form["val"])
+  if req.args["var"] == "aec":
+    aec = int(req.args["val"])
     if aec:
       print("Enabling aec sensor")
     else:
       print("Disabling aec sensor")
     camera.set_aec(aec)
     
-  if req.form["var"] == "aec2":
-    aec2 = int(req.form["val"])
+  if req.args["var"] == "aec2":
+    aec2 = int(req.args["val"])
     if aec2:
       print("Enabling aec dsp")
     else:
       print("Disabling aec dsp")
     camera.set_aec2(aec2)
     
-  if req.form["var"] == "aec_value":
-    ae_level = int(req.form["val"])
+  if req.args["var"] == "aec_value":
+    ae_level = int(req.args["val"])
     print("Setting ae level to %d"%ae_level)
     camera.set_ae_level(ae_level)
     
-  if req.form["var"] == "agc":
-    agc = int(req.form["val"])
+  if req.args["var"] == "agc":
+    agc = int(req.args["val"])
     print("Setting agc to %d"%agc)
     camera.set_agc(agc)
     
-  if req.form["var"] == "agc_gain":
-    agc_gain = int(req.form["val"])
+  if req.args["var"] == "agc_gain":
+    agc_gain = int(req.args["val"])
     print("Setting agc_gain to %d"%agc_gain)
     camera.set_agc_gain(agc_gain)
     
-  if req.form["var"] == "gainceiling":
-    gainceiling = int(req.form["val"])
+  if req.args["var"] == "gainceiling":
+    gainceiling = int(req.args["val"])
     print("Setting gain_ceiling to %d"%gain_ceiling)
     camera.set_gainceiling(gainceiling)
     
-  if req.form["var"] == "bpc":
-    bpc = int(req.form["val"])
+  if req.args["var"] == "bpc":
+    bpc = int(req.args["val"])
     print("Setting bpc to %d"%bpc)
     camera.set_bpc(bpc)
     
-  if req.form["var"] == "wpc":
-    wpc = int(req.form["val"])
+  if req.args["var"] == "wpc":
+    wpc = int(req.args["val"])
     print("Setting wpc to %d"%wpc)
     camera.set_wpc(wpc)
     
-  if req.form["var"] == "raw_gma":
-    raw_gma = int(req.form["val"])
+  if req.args["var"] == "raw_gma":
+    raw_gma = int(req.args["val"])
     print("Setting raw_gma to %d"%raw_gma)
     camera.set_raw_gma(raw_gma)
     
-  if req.form["var"] == "lenc":
-    lenc = int(req.form["val"])
+  if req.args["var"] == "lenc":
+    lenc = int(req.args["val"])
     if lenc:
       print("Switching lens correction on")
     else:
       print("Switching lens correction off")
     camera.set_lenc(lenc)
     
-  if req.form["var"] == "dcw":
-    dcw = int(req.form["val"])
+  if req.args["var"] == "dcw":
+    dcw = int(req.args["val"])
     if dcw:
       print("Enabling downsizing")
     else:
       print("Disabling downsizing")      
     camera.set_dcw(dcw)
         
-  if req.form["var"] == "colorbar":
+  if req.args["var"] == "colorbar":
     print("Setting colorbar mode")
-    cb = int(req.form["val"])
+    cb = int(req.args["val"])
     if (cb):
       print("Colorbar is enabled")
     else:
       print("Colorbar is disabled")      
     camera.set_colorbar(cb)
     
-  if req.form["var"] == "vflip":
+  if req.args["var"] == "vflip":
     print("Setting vertical flip")
-    vflip = int(req.form["val"])
+    vflip = int(req.args["val"])
     if (vflip):
       print("Vertical flip is enabled")
     else:
       print("Vertical flip is disabled")      
     camera.set_vflip(vflip)
 
-  if req.form["var"] == "hmirror":
+  if req.args["var"] == "hmirror":
     print("Setting horizontal mirror")
-    hmirror = int(req.form["val"])
+    hmirror = int(req.args["val"])
     if (hmirror):
       print("Horizontal mirror is enabled")
     else:
       print("Horizontal mirror is disabled")      
     camera.set_hmirror(hmirror)
     
-  if req.form["var"] == "awb":
+  if req.args["var"] == "awb":
     print("Setting white ballance")
-    awb = int(req.form["val"])
+    awb = int(req.args["val"])
     camera.set_whitebal(awb)
     
   #yield from resp.awrite("control")
