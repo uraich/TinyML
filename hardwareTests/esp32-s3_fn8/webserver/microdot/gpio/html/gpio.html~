@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Controlling LED and NeoPixel and reading switch on ESP32-S3_FN8 with Microdot</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+      function getCookie(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length == 2)
+              return parts.pop().split(";").shift();
+      }
+      function showMessage() {
+          document.getElementById('message').innerHTML = getCookie('message');
+      }
+	  
+      function onLoad() {
+          showMessage();
+          var form = getCookie('form');
+          if (form) {
+              form = form.split(',')
+              document.getElementById(form[0]).checked = true;
+              document.getElementById(form[1]).checked = true;
+          }
+      }
+
+    </script>
+  </head>
+  <body onload="onLoad();">
+    <div class="container">
+      <h1>Controlling LED and NeoPixel<br>and reading switch on ESP32-S3_FN8 with Microdot</h1>
+      <div class="alert alert-primary" role="alert" id="message">
+      </div>
+      <form method="POST" action="">
+        <p>
+	  <input type="radio" name="device" value="SW1" id="SW1">
+	  <label for="SW1">Switch SW1</label><br>
+	  <input type="radio" name="device" value="userLED" id="userLED" checked>
+	  <label for="userLED">User LED led1</label><br>
+	  <input type="radio" name="device" value="neopixel" id="neopixel">
+	  <label for="neopixel">NeoPixel led3</label>
+	  </input>
+	</p>
+
+	<div>
+	  <p> Color on NeoPixel:<br>
+	    <input type="radio" name="color" value="red" id="red">
+            <label for="red">red</label>&nbsp;&nbsp;
+            <input type="radio" name="color" value="green" id="green">
+            <label for="green">green</label>&nbsp;&nbsp;
+            <input type="radio" name="color" value="blue" id="blue">
+            <label for="blue">blue</label>
+            <input type="radio" name="color" value="off" id="off" checked>
+            <label for="off">off</label>
+            <br>
+	    <input type="submit" class="btn btn-outline-dark" name="read" value="Read">
+          </p>
+        </div>	
+
+        <div>
+          <p>
+            <input type="submit" class="btn btn-outline-dark" name="set-low" value="Switch LED off">
+            <input type="submit" class="btn btn-outline-dark" name="set-high" value="Switch LED on">
+          </p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
