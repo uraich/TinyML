@@ -1,23 +1,23 @@
-# cameraWebServer.py: a WEB server driving the esp32-cam OV2640 camera 
-# Program written for the TinyML course at the University of Cape Coast
-# copyright (c) U. Raich February 2024
-# This program is released under the MIT license
-
-
-import time
+import sys
+import asyncio
 import camera
 from machine import Pin
-from microdot.microdot import Microdot, send_file
-from wifi_connect import connect, getIPAddress  
+from microdot import Microdot, send_file
+from wifi_connect import connect, getIPAddress
 import os
 osVersion=os.uname()
 
-# Connect to WiFi
+# connect to WiFi
 connect()
-ipadd=getIPAddress()
+app = Microdot()
+
+frames = []
+for file in ['images/1.jpg', 'images/2.jpg', 'images/3.jpg']:
+    with open(file, 'rb') as f:
+        frames.append(f.read())
 
 print("Init camera")
-# Disable camera inittialization
+# Disable camera initialization
 camera.deinit()
 
 # Enable camera initialization
@@ -43,14 +43,12 @@ if cam_init_result:
   print("Camera was successfully initialized")
 else:
   print("Camera initialization failed");
-  
+
 print("Starting the WEB server")
-app = Microdot()
-  
-@app.route("/")
-async def index(req):
-  print("index route")
-  return send_file("html/camera.html")
+
+@app.route('/')
+async def index(request):
+    return send_file("html/camera.html",status_code=200, content_type="text/html")
 
 @app.route("/status")
 def index(req):
@@ -82,57 +80,38 @@ def index(req):
   jsonDict.update({"colorbar":camera.get_colorbar()})
   print(jsonDict)
   return jsonDict              
-"""  
-@app.route("/stream")
-# Send camera pictures
-def send_frame():
-    buf = camera.capture()
-    yield (b'--frame\r\n'
-           b'Content-Type: image/jpeg\r\n\r\n'
-           + buf + b'\r\n')
-    del buf
-    gc.collect()
+ 
+@app.route('/video_feed')
+async def video_feed(request):
+    print('Starting video stream.')
 
-def index(req, resp):
-  headers= resp.Connection: keep-alive
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Expires: Thu, Jan 01 2024 00:00:00 GMT
-Pragma: no-cache
+    # MicroPython can only use class-based async generators
+    class stream():
+        def __init__(self):
+            self.i = 0
+            
+        def __aiter__(self):
+            return self
+            
+        async def __anext__(self):
+            await asyncio.sleep_ms(50)
+            buf=camera.capture()
+            # self.i = (self.i + 1) % len(frames)
+            # return b'Content-Type: image/jpeg\r\n\r\n' + \
+            #    frames[self.i] + b'\r\n--frame\r\n'
+            return b'Content-Type: image/jpeg\r\n\r\n' + \
+               buf + b'\r\n--frame\r\n'
+            
+        async def aclose(self):
+            print('Stopping video stream.')
+    
+    print("Type of stream(): ",type(stream()))
+    return stream(), 200, {'Content-Type':
+                           'multipart/x-mixed-replace; boundary=frame'}
 
-  frame=--frame
-Content-Type: image/jpeg
-
-  print("start stream")    
-  yield from picoweb.start_response(resp, content_type='multipart/x-mixed-replace; boundary=frame')  
-  while True:
-    yield from resp.awrite(next(send_frame()))
-    gc.collect()    
-
-    try:
-      if len(buf) > 0:
-        print("Image successfully read")
-        # yield from resp.awrite(frame)
-        # print("Sending buffer")
-        # yield from resp.awrite(buf)
-        #yield from resp.awrite('\r\n')
-        yield from resp.awrite(next(send_frame()))
-        await asyncio.sleep_ms(500)  # try as fast as we can
-      else:
-        picoweb.http_error(resp, 503)
-    except:
-      break
-"""
 @app.route("/control")
 async def control(req):
   print("control route")
-  # yield from picoweb.start_response(resp, content_type = "text/html")
-  # print(req.parse_qs())
-  
-  # print('request method: ',req.method)
-  # print('client address: ',req.client_addr)
-  # print('request.url: ',req.url)
-  # print('request.query_string: ',req.query_string)
-  # print('request.args: ',req.args)
   
   if req.args["var"] == "framesize":
     framesize = int(req.args["val"])
@@ -298,7 +277,5 @@ def capture(req):
   else:      
     return 'Capture Error', 503
 
-app.run(debug=2, host = ipadd,port=80)
-
-
-  
+if __name__ == '__main__':
+    app.run(debug=True,host=getIPAddress(), port=80)
