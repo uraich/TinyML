@@ -8,11 +8,14 @@ import sys
 from utime import sleep_ms
 from machine import Pin
 from neopixel import NeoPixel
+try:
+    from hw_esp32_s3_fn8 import NEOPIXEL, NO_OF_NEOPIXELS, INTENSITY
+except:
+    print("Please make sure hw_esp32_s3_fn8.py has been uploaded to /lib")
+    sys.exit()
 
 # We set the max LED intensity to 31 in order not to blind our eyes
-MAX_INTENSITY = 31
-NEOPIXEL_PIN = 33
-NO_OF_LEDS   = 1
+MAX_INTENSITY = INTENSITY
 
 # these are the color components (used only for printing)
 RED = 0
@@ -25,12 +28,12 @@ dark = (0,0,0)
 # this is used to switch off all the LEDs when we terminate the program with ^C
 def clear():
     # clear all the LEDs
-    for i in range(NO_OF_LEDS):
+    for i in range(NO_OF_NEOPIXELS):
         neopixel[i]=dark
         neopixel.write()
 
 # init the NeoPixel driver
-neopixel = NeoPixel(Pin(NEOPIXEL_PIN),NO_OF_LEDS)
+neopixel = NeoPixel(Pin(NEOPIXEL),NO_OF_NEOPIXELS)
 
 # if you observe the color wheel very attentively then you see that there is only one color component that
 # is changing as we go around the ring.
@@ -70,7 +73,7 @@ def colors(pos):
              
 
 def show(color):
-    for i in range(NO_OF_LEDS):
+    for i in range(NO_OF_NEOPIXELS):
         neopixel[i] = color
     neopixel.write()
     sleep_ms(100)

@@ -5,13 +5,17 @@
 # Copyright (c) U.Raich
 # The program is released under the MIT license
 
+import sys
 from machine import Pin
 from time import sleep_ms
-
-SW1 = 38 # the push button is connected to this pin
-
-switch = Pin(SW1,Pin.IN, Pin.PULL_UP) # program the pin to be input  and
-                                     # add the pull up resistor
+try:
+    from hw_esp32_s3_fn8 import USER_SWITCH
+except:
+    print("Please make sure hw_esp32_s3_fn8.py has been uploaded to /lib")
+    sys.exit()
+    
+switch = Pin(USER_SWITCH,Pin.IN, Pin.PULL_UP) # program the pin to be input  and
+                                              # add the pull up resistor
 
 # a function that prints the state of the push button
 def print_state(state):

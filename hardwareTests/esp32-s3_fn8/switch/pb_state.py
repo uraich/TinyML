@@ -4,10 +4,16 @@
 # African Internet Summit 2024
 # It is released under the MIT license
 
-SW1 = 38                              # the switch is connected to GPIO 38 
+import sys
+try:
+    from hw_esp32_s3_fn8 import USER_SWITCH
+except:
+    print("Please make sure hw_esp32_s3_fn8.py has been uploaded to /lib")
+    sys.exit()
+
 from time import sleep_ms
 from machine import Pin,Signal
-switch = Pin(38, Pin.IN, Pin.PULL_UP)  
+switch = Pin(USER_SWITCH, Pin.IN, Pin.PULL_UP)  
 
 while True:
     if (switch.value()):  # if we get a one here, we see the pullup resistor

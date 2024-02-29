@@ -2,10 +2,14 @@
 # U. Raich, 13. September 2023
 # This program was written for the course on IoT at the University of Cape Coast,Ghana
 
-import machine, neopixel, time
+import machine, neopixel, time, sys
 
-n=1
-intensity = 0x1f
+try:
+    from hw_esp32_s3_fn8 import NEOPIXEL, NO_OF_NEOPIXELS, INTENSITY
+except:
+    print("Please make sure hw_esp32_s3_fn8.py has been uploaded to /lib")
+    sys.exit()
+
 
 print("Testing the ws2812 rgb LED")
 print("Shows the 7 basic color combinations")
@@ -18,23 +22,23 @@ def clearPixel():
     neoPixel[0] = (0,0,0)
     neoPixel.write()
 
-ws2812 = machine.Pin(33) # connected to GPIO 48 on FreeNove ESP32S3-WROOM
+ws2812 = machine.Pin(NEOPIXEL) # connected to GPIO 48 on FreeNove ESP32S3-WROOM
 
-neoPixel = neopixel.NeoPixel(ws2812, n)
+neoPixel = neopixel.NeoPixel(ws2812, NO_OF_NEOPIXELS)
 
 for color in range(1,8,1):
     if color & 1:
-        red = intensity
+        red = INTENSITY
     else:
         red = 0
         
     if color & 2:
-        green = intensity
+        green = INTENSITY
     else:
         green = 0
         
     if color & 4:
-        blue = intensity
+        blue = INTENSITY
     else:
         blue = 0
         

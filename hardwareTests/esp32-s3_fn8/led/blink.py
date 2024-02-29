@@ -5,9 +5,16 @@
 # African Internet Summit 2024
 # It is released under the MIT license
 
+import sys
 from time import sleep_ms
 from machine import Pin,Signal
-ledPin = Pin(34,Pin.OUT)  #create LED object from pin2,Set Pin2 to output
+try:
+    from hw_esp32_s3_fn8 import USER_LED
+except:
+    print("Please make sure hw_esp32_s3_fh4r2.py has been uploaded to /lib")
+    sys.exit()
+
+ledPin = Pin(USER_LED,Pin.OUT)  #create LED object from pin2,Set Pin2 to output
 led=Signal(ledPin,invert=True) 
 
 try:

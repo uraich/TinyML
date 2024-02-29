@@ -26,6 +26,10 @@ else
 fi
 
 echo ""
+echo "Uploading hw_esp32_s3_fn8.py to /lib"
+ampy put ../../../hw_esp32_s3_fn8.py /lib/hw_esp32_s3_fn8.py
+
+echo ""
 # check if /html already exists
 
 if [[ $dirs == *"/html"* ]]
