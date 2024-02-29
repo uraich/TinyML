@@ -9,6 +9,12 @@
 
 from machine import Pin,I2C
 import sys,time
+try:
+    from hw_esp32_s3_fh4r2 import *
+except:
+    print("Please make sure hw_esp32_s3_fh4r2.py has been uploaded to /lib")
+    sys.exit()
+   
 print("Scanning the I2C bus")
 print("Program written for the workshop on IoT at the")
 print("African Internet Summit 2019")
@@ -16,10 +22,9 @@ print("Copyright: U.Raich")
 print("Released under the Gnu Public License")
 
 print("Running on ESP32S3FH4R2") 
-scl = Pin(36)   # on the wemos d1 mini (esp32s3fh4r2) scl is connected to GPIO 36
-sda = Pin(35)   # on the wemos d1 mini (esp32s3fh4r2) sda is connected to GPIO 35
 
-i2c = I2C(1,scl=scl,sda=sda)
+i2c = I2C(1,scl=Pin(SCL),sda=Pin(SDA))
+
 addr = i2c.scan()
 
 print("     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f")

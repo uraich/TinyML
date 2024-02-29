@@ -8,13 +8,17 @@
 from machine import Pin
 from neopixel import NeoPixel
 from utime import sleep_ms
+import sys
 
-LED_PIN    = 47
-NO_OF_LEDS = 1
-INTENSITY  = 0x1f
+try:
+    from hw_esp32_s3_fh4r2 import *
+except:
+    print("Please make sure hw_esp32_s3_fh4r2.py has been uploaded to /lib")
+    sys.exit()
+
 OFF        = 0
 
-led = NeoPixel(Pin(LED_PIN),NO_OF_LEDS)
+led = NeoPixel(Pin(NEOPIXEL),NO_OF_NEOPIXELS)
 
 def switchLED(onOff):
     if onOff:
