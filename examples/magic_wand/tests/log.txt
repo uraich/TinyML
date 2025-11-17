@@ -1,0 +1,2277 @@
+Magic Wand debugging enabled
+Setup started
+LSM6DS3_IMU debugging enabled
+LSM6DS3_I2C debugging disabled
+acceleration sample rate: 26.0
+gyroscope sample rate: 26.0
+fifo mode: continuous
+fifo odr : 26 Hz
+fifo acc decimation factor: 1
+fifo gyro decimation factor: 1
+Starting loop
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 2
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 4
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 6
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 8
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 10
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 12
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 14
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 16
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 18
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 20
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 22
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 24
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 26
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 28
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 30
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 32
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 34
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 36
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 38
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 40
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 42
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 44
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 46
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 48
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 50
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 52
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 54
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 56
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 58
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 60
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 62
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 64
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 66
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 68
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 70
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 72
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 74
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 76
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 78
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 80
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 82
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 84
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 86
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 88
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 90
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 92
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 94
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 96
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 98
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 100
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 102
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 104
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 106
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 108
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 110
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 112
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 114
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 116
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 118
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 120
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 122
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 124
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 126
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 128
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 130
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 132
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 134
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 136
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 138
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 140
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 142
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 144
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 146
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 148
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 150
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 152
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 154
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 156
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 158
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 160
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 162
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 164
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 166
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 168
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 170
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 172
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 174
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 176
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 178
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 180
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 182
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 184
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 186
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 188
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 190
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 192
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 194
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 196
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 198
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 200
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 202
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 204
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 2
+data index: 210
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 0.00, y: 0.00, z: 0.00
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 212
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 214
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 216
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 218
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 220
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 222
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 224
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 226
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 228
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 230
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 232
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 234
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 236
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 238
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 240
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 242
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 244
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 246
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 248
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 250
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 252
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 254
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 256
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 258
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 260
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 262
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 264
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 266
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 268
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 270
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 272
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 274
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 276
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 278
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 280
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 282
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 284
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 286
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 288
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 290
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 292
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 294
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 296
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 298
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 300
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 302
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 304
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 306
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 308
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 310
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 312
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 314
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 316
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 318
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 320
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 322
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 324
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 326
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 328
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 330
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 332
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 334
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 336
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 338
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 340
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 342
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 344
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 346
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 348
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 350
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 352
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 354
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 356
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 358
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 360
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 362
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 364
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 366
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 368
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 370
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 372
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 374
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 376
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 378
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 380
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 382
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 384
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 386
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 388
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 390
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 392
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 394
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 396
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 2
+data index: 402
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 0.00, y: 0.00, z: 0.00
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 404
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 406
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 408
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 410
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 412
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 414
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 416
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 418
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 420
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 422
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 424
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 426
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 428
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 430
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+Data available
+no of samples read: 1
+data index: 432
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 434
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 436
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 438
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 440
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 442
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 444
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 446
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 448
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 450
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 452
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 454
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 456
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+no of samples read: 1
+data index: 458
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 460
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 462
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 464
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 466
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 468
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 470
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 472
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 474
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 476
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 478
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 480
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 482
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 484
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 486
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 488
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 490
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 492
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 494
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 496
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 498
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 500
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 502
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 504
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 506
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 508
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 510
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 512
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 514
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 516
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 518
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 520
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 522
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 524
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 526
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 528
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 530
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 532
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 534
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 536
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 538
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+Data available
+no of samples read: 1
+data index: 540
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 542
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 544
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 546
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 548
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 550
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 552
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 554
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 556
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 558
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 560
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 562
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 564
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 566
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 568
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+Data available
+no of samples read: 1
+data index: 570
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+Data available
+no of samples read: 1
+data index: 572
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 574
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 576
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 578
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 580
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.00, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 2
+data index: 586
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 0.00, y: 0.00, z: 0.00
+Data available
+no of samples read: 1
+data index: 588
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 590
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 592
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 1
+data index: 594
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.03, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+no of samples read: 1
+data index: 596
+New gyro values: x: 0.00, y: 0.00, z: 0.00
+New acc values: x: 1.01, y: -0.02, z: 0.10
+fifo is empty
+Waiting for data
+fifo is empty
+Waiting for data
+Data available
+no of samples read: 2
