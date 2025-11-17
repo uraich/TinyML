@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Controlling User LED and Flash Light and reading switch on ESP32-CAM with Microdot</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+      function getCookie(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length == 2)
+              return parts.pop().split(";").shift();
+      }
+      function showMessage() {
+          document.getElementById('message').innerHTML = getCookie('message');
+      }
+	  
+      function onLoad() {
+          showMessage();
+          var form = getCookie('form');
+          if (form) {
+              form = form.split(',')
+              document.getElementById(form[0]).checked = true;
+              document.getElementById(form[1]).checked = true;
+          }
+      }
+
+    </script>
+  </head>
+  <body onload="onLoad();">
+    <div class="container">
+      <h1>Controlling User LED and Flash Light<br>and reading switch on ESP32-CAM with Microdot</h1>
+      <div class="alert alert-primary" role="alert" id="message">
+      </div>
+      <form method="POST" action="">
+        <p>
+	  <input type="radio" name="device" value="SW1" id="SW1">
+	  <label for="SW1">Boot Switch on GPIO 0</label><br>
+	  <input type="radio" name="device" value="userLED" id="userLED" checked>
+	  <label for="userLED">User LED</label><br>
+	  <input type="radio" name="device" value="flashLight" id="flashLight">
+	  <label for="flashLight">Flash Light</label>
+	  </input>
+	</p>
+
+	<div>
+	  <p> Intensity of Flash Light:<br>
+	    <input type="radio" name="intensity" value="5%" id="5%" checked>
+            <label for="5%">5%</label>&nbsp;&nbsp;
+	    <input type="radio" name="intensity" value="10%" id="10%">
+            <label for="10%">10%</label>&nbsp;&nbsp;
+	    <input type="radio" name="intensity" value="20%" id="20%">
+            <label for="20%">20%</label>&nbsp;&nbsp;
+	    <input type="radio" name="intensity" value="30%" id="30%">
+            <label for="30%">30%</label>&nbsp;&nbsp;
+	    <input type="radio" name="intensity" value="40%" id="40%">
+            <label for="40%">40%</label>&nbsp;&nbsp;
+	    <input type="radio" name="intensity" value="50%" id="50%">
+            <label for="50%">50%</label>&nbsp;&nbsp;
+
+            <br>
+	    <input type="submit" class="btn btn-outline-dark" name="read" value="Read">
+          </p>
+        </div>	
+
+        <div>
+          <p>
+            <input type="submit" class="btn btn-outline-dark" name="set-low" value="Switch LED off">
+            <input type="submit" class="btn btn-outline-dark" name="set-high" value="Switch LED on">
+          </p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
