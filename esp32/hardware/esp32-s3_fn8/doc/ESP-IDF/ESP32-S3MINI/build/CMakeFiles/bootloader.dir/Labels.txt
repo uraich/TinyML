@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/CMakeFiles/bootloader
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/CMakeFiles/bootloader.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/CMakeFiles/bootloader-complete.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

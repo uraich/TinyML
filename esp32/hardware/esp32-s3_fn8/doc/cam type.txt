@@ -1,0 +1,27 @@
+ESP32-S3 N16R8
+ESP32-S3 cam
+
+https://www.aliexpress.com/item/1005006095214627.html?spm=a2g0o.order_list.order_list_main.5.5c3a1802XEguuB
+
+403c9704,len:0xc00
+load:0x403cc700,len:0x2eb0
+SHA-256 comparison failed:
+Calculated: 395bba5b44450ee08ab7d031db59e11b953636f63ea56c7dc7ac638cd74ca71d
+Expected: 7c97e2ddc2298eb7e9133cfa45f5eb607782ff2882d8f9971ce45c9ddd8648fc
+Attempting to boot anyway...
+entry 0x403c9908
+m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x3fce3818,len:0x16e4
+load:0x403c9700,len:0x4
+load:0x403c9704,len:0xc00
+load:0x403cc700,len:0x2eb0
+SHA-256 comparison failed:
+Calculated: 395bba5b44450ee08ab7d031db59e11b953636f63ea56c7dc7ac638cd74ca71d
+Expected: 7c97e2ddc2298eb7e9133cfa45f5eb607782ff2882d8f9971ce45c9ddd8648fc
+Attempting to boot anyway...
+entry 0x403c9908

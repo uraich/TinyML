@@ -1,0 +1,15 @@
+/* hw_esp32_devkit.h: defines all the hardware connections of the
+   MH ET Live esp32 devkit CPU
+   Copyright (c) U. Raich, Oct. 2025
+   This file is part of the course on TinyML at the
+   University of Cape Coast, Ghana
+   It is released under the MIT license */
+
+// user switch
+ #define USER_SWITCH      0
+
+// I2C
+
+#define SCL              22
+#define SDA              21
+

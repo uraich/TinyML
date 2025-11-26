@@ -1,0 +1,6 @@
+source "C:/esp-idf/esp-idf_v5.1/esp-idf/components/bootloader/Kconfig.projbuild"
+source "C:/esp-idf/esp-idf_v5.1/esp-idf/components/esp_app_format/Kconfig.projbuild"
+source "C:/esp-idf/esp-idf_v5.1/esp-idf/components/esp_rom/Kconfig.projbuild"
+source "C:/esp-idf/esp-idf_v5.1/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "C:/esp-idf/esp-idf_v5.1/esp-idf/components/partition_table/Kconfig.projbuild"
+source "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/main/Kconfig.projbuild"

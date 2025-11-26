@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "C:/Users/Administrator/Desktop/ESP32-Exrenal-data/ESP32-CAM-S00X/ESP32-S3-MINI/ESP-IDF_v5.0.3/ESP32-S3MINI/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}
