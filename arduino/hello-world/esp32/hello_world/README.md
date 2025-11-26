@@ -21,6 +21,6 @@ minicom -t | tee output.txt
 ```
 After resetting the ESP32 the output will be captured on the file output.txt
 The _analyse_output.ipynb_ jupyter notebook or the _analyse_output.py_ program will plot the data, as well as a regular sine function for comparison.
-![hello_world.png](images/hello_world.png "The hello world analysis screen dump")
+![hello_world.png](output_data/images/hello_world.png "The hello world analysis screen dump")
 
 
