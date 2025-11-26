@@ -13,7 +13,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-
+/* added intensity output to the ws2812 LED
+   U. Raich, 26.11.2025
+==============================================================================*/   
+  
 #include "tensorflow/lite/micro/micro_mutable_op_resolver.h"
 #include "tensorflow/lite/micro/micro_interpreter.h"
 #include "tensorflow/lite/micro/system_setup.h"
@@ -23,21 +26,35 @@ limitations under the License.
 #include "model.h"
 #include "constants.h"
 #include "output_handler.h"
+#include <Adafruit_NeoPixel.h>
 
 // Globals, used for compatibility with Arduino-style sketches.
 namespace {
-const tflite::Model* model = nullptr;
-tflite::MicroInterpreter* interpreter = nullptr;
-TfLiteTensor* input = nullptr;
-TfLiteTensor* output = nullptr;
-int inference_count = 0;
-
-constexpr int kTensorArenaSize = 2000;
-uint8_t tensor_arena[kTensorArenaSize];
+  const tflite::Model* model = nullptr;
+  tflite::MicroInterpreter* interpreter = nullptr;
+  TfLiteTensor* input = nullptr;
+  TfLiteTensor* output = nullptr;
+  int inference_count = 0;
+  
+  constexpr int kTensorArenaSize = 2000;
+  uint8_t tensor_arena[kTensorArenaSize];
 }  // namespace
+
+// needed for LED output
+// When setting up the NeoPixel library, we tell it how many pixels,
+// and which pin to use to send signals.
+// NEO_RGB defines the type of LED
+// some LEDs switch red and green
+Adafruit_NeoPixel pixels(1, PIN_NEOPIXEL, NEO_RGB + NEO_KHZ800);
+int maxIntensity = 100;
 
 // The name of this function is important for Arduino compatibility.
 void setup() {
+  delay(200);  // needed to give the esp32-s3_fh4r2 time to boot 
+  Serial.begin(115200);
+  Serial.println("Starting the tinyML hello world demo");
+  pixels.begin(); // initialize the  NeoPixel strip object
+
   // Map the model into a usable data structure. This doesn't involve any
   // copying or parsing, it's a very lightweight operation.
   model = tflite::GetModel(g_model);

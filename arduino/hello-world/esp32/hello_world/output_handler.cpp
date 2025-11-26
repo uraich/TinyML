@@ -14,10 +14,23 @@ limitations under the License.
 ==============================================================================*/
 
 #include "output_handler.h"
+#include "constants.h"
 #include "tensorflow/lite/micro/micro_log.h"
+#include <Adafruit_NeoPixel.h>
+
+extern int maxIntensity;
+extern Adafruit_NeoPixel pixels;
 
 void HandleOutput(float x_value, float y_value) {
   // Log the current X and Y values
   MicroPrintf("x_value: %f, y_value: %f", static_cast<double>(x_value),
-              static_cast<double>(y_value));              
+              static_cast<double>(y_value));
+  // calculate the intensity value from the y value of the sine function
+  int intens = ((y_value+1)/2)*maxIntensity;
+  // The y value might fall below -1 in which case the intensity value
+  // would become negative, resulting in a flash of the LED
+  if (intens < 0)
+    intens = 0;
+  pixels.setPixelColor(0,pixels.Color(0,0,intens));  // change intensity of blue
+  pixels.show();
 }

@@ -28,5 +28,4 @@ const float kXrange = 2.f * 3.14159265359f;
 // of time. Since different devices take different amounts of time to perform
 // inference, this value should be defined per-device.
 extern const int kInferencesPerCycle;
-
 #endif  // TENSORFLOW_LITE_MICRO_EXAMPLES_HELLO_WORLD_CONSTANTS_H_
