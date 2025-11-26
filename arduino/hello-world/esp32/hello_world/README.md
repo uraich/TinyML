@@ -10,58 +10,17 @@ The model is trained to replicate a `sine` function and generates a pattern of
 data to either blink LEDs or control an animation, depending on the capabilities
 of the device.
 
-## Deploy to ESP32
+## Modifications to the original code
+The original code calculates some 20 sine points using the trained hello world model. The model is integrated into the source code as a C include file (model.h) and a constant C array (model.cpp). The code is generated from the Tensorflow Lite Micro model (just an array of byte values) using the xdd program. You may have to install this program on your computer.
+The new version extends the calculations to 1000 values and it uses the WS2812 LED on the ESP32-S3 board as a visual indicator. The sin(x) values from the model are mapped onto a (0..maxIntensity) light intensity range, which is fed to the LED.
 
-The following instructions will help you build and deploy this sample
-to [ESP32](https://www.espressif.com/en/products/hardware/esp32/overview)
-devices using the [ESP IDF](https://github.com/espressif/esp-idf).
-
-The sample has been tested on ESP-IDF version `release/v4.2` and `release/v4.4` with the following devices:
-- [ESP32-DevKitC](http://esp-idf.readthedocs.io/en/latest/get-started/get-started-devkitc.html)
-- [ESP32-S3-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html)
-- [ESP-EYE](https://github.com/espressif/esp-who/blob/master/docs/en/get-started/ESP-EYE_Getting_Started_Guide.md)
-
-### Install the ESP IDF
-
-Follow the instructions of the
-[ESP-IDF get started guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html)
-to setup the toolchain and the ESP-IDF itself.
-
-The next steps assume that the
-[IDF environment variables are set](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html#step-4-set-up-the-environment-variables) :
-
- * The `IDF_PATH` environment variable is set
- * `idf.py` and Xtensa-esp32 tools (e.g. `xtensa-esp32-elf-gcc`) are in `$PATH`
-
-
-### Building the example
-
-Set the chip target (For esp32s3 target, IDF version `release/v4.4` is needed):
-
+## Analysing the results
+The results are output to the Arduino serial port and they can be captured with a program like minicom or tio: 
 ```
-idf.py set-target esp32s3
+minicom -t | tee output.txt
 ```
+After resetting the ESP32 the output will be captured on the file output.txt
+The _analyse_output.ipynb_ jupyter notebook or the _analyse_output.py_ program will plot the data, as well as a regular sine function for comparison.
+![hello_world.png](images/hello_world.png "The hello world analysis screen dump")
 
-Then build with `idf.py`
-```
-idf.py build
-```
 
-### Load and run the example
-
-To flash (replace `/dev/ttyUSB0` with the device serial port):
-```
-idf.py --port /dev/ttyUSB0 flash
-```
-
-Monitor the serial output:
-```
-idf.py --port /dev/ttyUSB0 monitor
-```
-
-Use `Ctrl+]` to exit.
-
-The previous two commands can be combined:
-```
-idf.py --port /dev/ttyUSB0 flash monitor
-```
