@@ -1,2 +1,2 @@
 #!/bin/sh
-rshell cp /pyboard/camImage.raw .
+rshell cp /pyboard/images/camImage.raw .

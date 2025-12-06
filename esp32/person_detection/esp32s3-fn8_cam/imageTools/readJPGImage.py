@@ -1,9 +1,8 @@
-# Reads a 96x96 pixel gray scale image from the camera in raw mode
-# This image can directly be passed into the input tensor of the
-# person detection model
+# Reads a 96x96 pixel jpeg image from the camera 
+# This image can easily be displayed with an image viewer
 # The program is part of a course on AI and edge computing at the
 # University of Cape Coast, Ghana
-# Copyright (c) U. Raich [2022]
+# Copyright (c) U. Raich, Dec 2025
 # The program is released under the MIT License
 
 import sys
@@ -19,7 +18,7 @@ except:
 camera.deinit()    
 cam_init_result = camera.init(0, d0=CAM_D0, d1=CAM_D1, d2=CAM_D2, d3=CAM_D3,
                               d4=CAM_D4, d5=CAM_D5, d6=CAM_D6, d7=CAM_D7,
-                              format=camera.GRAYSCALE, framesize=camera.FRAME_96X96, 
+                              format=camera.JPEG, framesize=camera.FRAME_VGA, 
                               xclk_freq=camera.XCLK_20MHz,
                               href=CAM_HREF, vsync=CAM_VSYNC,
                               reset=CAM_RESET, pwdn=CAM_PWDN,
@@ -32,18 +31,19 @@ if cam_init_result:
 else:
     print("Camera initialization failed");
 
+# set framesize to 96x96 pixels
+camera.set_framesize(camera.FRAME_96X96)
+
 # increase the brightness, which is -2 in case of grayscale images
 camera.set_brightness(0)
 
-# capture an image
 buf=camera.capture()
-
 try:
     print("type: ", type(buf), " Length: ",len(buf))
     # save the raw image to a file
-    print("Writing the data to images/camImage.raw")
-    if len(buf) == 96*96:
-        f = open("images/camImage.raw","w+b")
+    print("Writing the data to images/camImage.jpg")
+    if len(buf) > 0:
+        f = open("images/camImage.jpg","w+b")
         f.write(buf)
         f.close()
 except:
