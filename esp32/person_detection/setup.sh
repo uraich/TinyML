@@ -30,13 +30,21 @@ echo ""
 if [[ $dirs == *"/images"* ]]
 then
     echo "/images directory already exists"
+    echo "The following modules have been uploaded to /images:"
+    modules="$(ampy ls /images)"
+    for i in $modules ; do
+	echo ${i#"/images/"}
+	done    
 else
     echo "Creating /images directory"
     ampy mkdir /images
-    echo "Uploading image files"
-    ampy put images/person_image_data.dat /images/person_image_data.dat
-    ampy put images/no_person_image_data.dat /images/no_person_image_data.dat
 fi
+
+echo "Uploading image files person.dat and no_person.dat to images"
+# ampy put images/person_image_data.dat /images/person_image_data.dat
+# ampy put images/no_person_image_data.dat /images/no_person_image_data.dat
+ampy put images/person.dat /images/person.dat
+ampy put images/no_person.dat /images/no_person.dat
 
 if [[ $dirs == *"/models"* ]]
 then

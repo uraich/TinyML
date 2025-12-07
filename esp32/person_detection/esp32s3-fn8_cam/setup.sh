@@ -1,11 +1,12 @@
 #!/bin/bash
-# Prepares the ESP32 for the person detection example
-# Demo program for the course on the TinyML at the
+# This bash script uploads the hardware description file for the
+# esp32s3-fn8_cam board
+# Demo program for the course on the Internet of Things (IoT) at the
 # University of Cape Coast (Ghana)
-# Copyright (c) U. Raich October 2023
-# This program is released under the MIT license
+# Copyright (c) U. Raich April 2020
+# This program is released under GPL
 
-echo "Setting up the file system for the person detection  demo"
+echo "Setting up the hardware file for the esp32-s3_fn8"
 dirs="$(ampy ls)"
 echo $dirs
 
@@ -23,15 +24,7 @@ else
     echo "Creating /lib directory"
     ampy mkdir /lib
 fi
-echo "Sending the hardware description file hw_esp32_s3_fn8.py"
-ampy put ../../hardware/esp32-s3_fn8/hw_esp32_s3_fn8.py /lib/hw_esp32_s3_fn8.py
 
-if [[ $dirs == *"/models"* ]]
-then
-    echo "/models directory already exists"
-else
-    echo "Creating /models directory"
-    ampy mkdir /models
-fi
-echo "Uploading the tensorflow lite model: person_detect_model.tflite"
-ampy put ../models/person_detect_model.tflite models/person_detect_model.tflite
+echo ""
+echo "Uploading hw_esp32_s3_fn8.py"
+ampy put ../../hardware/esp32s3-fn8_cam/hw_esp32_s3_fn8.py /lib/hw_esp32_s3_fn8.py
