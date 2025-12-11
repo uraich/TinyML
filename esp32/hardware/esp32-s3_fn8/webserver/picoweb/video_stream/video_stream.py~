@@ -1,0 +1,75 @@
+import picoweb
+import time
+import network
+import camera
+import uasyncio as asyncio
+from machine import Pin, PWM
+from wifi_connect import connect, getIPAddress  
+
+global frame_index
+# connect to WiFi
+connect()
+
+html = '''<!doctype html>
+<html>
+  <head>
+    <title>PicoWeb Video Streaming</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>picoweb Video Streaming</h1>
+    <img src="/video_feed">
+  </body>
+</html>'''
+
+frames = []
+for file in ['images/1.jpg', 'images/2.jpg', 'images/3.jpg']:
+    try:
+        with open(file, 'rb') as f:
+            frames.append(f.read())
+    except:
+        print("images/1.jpg not found. Did you upload it to the ESP32?")
+        sys.exit()
+frame_index = 0
+print(type(frames[0]))
+
+print("Starting the WEB server")
+app = picoweb.WebApp("__main__")
+
+@app.route('/')
+async def index(req,resp):
+    yield from resp.awrite(html)
+    print("Starting video stream")
+
+@app.route('/video_feed')
+async def video_feed(req,resp):
+    global frame_index
+    headers= """resp.Connection: keep-alive
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Expires: Thu, Jan 01 2024 00:00:00 GMT
+Pragma: no-cache
+"""
+    frame="""--frame
+Content-Type: image/jpeg
+"""
+    print("start stream")    
+    yield from picoweb.start_response(resp, content_type='multipart/x-mixed-replace; boundary=frame')  
+    while True:
+        yield from resp.awrite(next(send_frame()))
+        # print("after calling send_frame")
+        await asyncio.sleep(1)
+        frame_index = (frame_index + 1) % len(frames)
+        gc.collect()
+    
+def send_frame():
+    global frame_index
+    print("in send_frame")
+    # a new image after a second
+    print("frame index: ",frame_index)
+    yield  (b'--frame\r\n'
+           b'Content-Type: image/jpeg\r\n\r\n'
+           + frames[frame_index] + b'\r\n')
+
+    
+if __name__ == '__main__':
+    app.run(debug=2,host=getIPAddress(), port=80)
