@@ -16,23 +16,24 @@ import micro_speech
 import microlite
 import utime
 from machine import Timer
-
-
 import math
 
-from machine import Pin
-from machine import I2S
+from machine import Pin,I2S
+
+try:
+    from hw_esp32_s3_fn8 import USER_LED, NEOPIXEL, NO_OF_NEOPIXELS, INTENSITY
+except:
+    print("Please make sure hw_esp32_s3_fn8.py has been uploaded to /lib")
+    sys.exit()
+
 
 micro_speech_model = bytearray(18712)
 
-model_file = io.open('model.tflite', 'rb')
-
+print("Reading the model")
+model_file = io.open('/models/micro_speech_model.tflite', 'rb')
 model_file.readinto(micro_speech_model)
-
 model_file.close()
-
-
-
+print("Model successfully read")
 
 def input_callback (microlite_interpreter):
 
@@ -186,10 +187,11 @@ def output_callback (microlite_interpreter):
 
 	results.storeResults(silence, unknown, yes, no)
 
+print("Creating interpreter")
+# interp = microlite.interpreter(micro_speech_model,8 * 1024, input_callback, output_callback)
+interp = microlite.interpreter(micro_speech_model,20480, input_callback, output_callback)
 
-interp = microlite.interpreter(micro_speech_model,8 * 1024, input_callback, output_callback)
-
-featureData = micro_speech.FeatureData(interp)
+featureData = micro_speech.FeatureData()
 
 
 
@@ -198,11 +200,8 @@ inferences = 0
 # dump_spectrograms = open ('spectrograms.txt', 'w')
 
 print('Starting')
-
 pgm_start = utime.ticks_ms()
-
 samplingDelayMs = const(10)
-
 inferenceDelayMs = const (500)
 
 
@@ -258,9 +257,9 @@ def processAudio(i2s):
 
 printPerSecondStats = False
 
-bck_pin = Pin(19)
-ws_pin = Pin(18)
-sdin_pin = Pin(23)
+bck_pin = Pin(36)
+ws_pin = Pin(37)
+sdin_pin = Pin(35)
 
 audio_in = I2S(
 	0,

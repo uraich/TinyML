@@ -30,7 +30,8 @@ window_size = const (kFeatureSliceDurationMs * kAudioOneMsSize)
 
 class Slice:
 
-    def __init__(self, segment, start_index):
+    def __init__(self, segment, start_index,debug=False):
+        self.debug = debug
         # self.segment = segment
         if segment.size != 480:
             raise ValueError ("Expected segment to be 480 bytes, was %d." % (segment.size))
@@ -40,6 +41,9 @@ class Slice:
             print (self.spectrogram)
         self.start_index = start_index
 
+    def setDebug(onOff):
+        self.debug = onOff
+        
     def getSpectrogram(self):
         return self.spectrogram
 
