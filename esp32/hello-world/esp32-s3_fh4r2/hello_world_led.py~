@@ -54,13 +54,13 @@ def led_off():
     
 # check if  the hardware definition file is already loaded
 try:
-    from hw_esp32_s3_fh4r2 import *
+    from hw_esp32_s3_fn8.py import *
 except:
-    print("Please make sure hw_esp32_s3_fh4r2.py has been uploaded to /lib")
+    print("Please make sure hw_esp32_s3_fn8.py has been uploaded to /lib")
     sys.exit()
 
 # NEOPIXEL and NO_OF_NEOPIXELS is defined in the
-# hardware definition file hw_esp32_s3_fh4r2.py
+# hardware definition file hw_esp32_s3_fn8.py
 
 neopixel = NeoPixel(Pin(NEOPIXEL),NO_OF_NEOPIXELS)
 maxIntensity = 100  # the NeoPixel is very bright, therefore we limit the light intensity
