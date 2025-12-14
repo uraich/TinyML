@@ -5,10 +5,11 @@ from ulab import numpy as np
 import microlite
 
 micro_speech_model = bytearray(18712)
-
-model_file = open('models/micro-speech-model.tflite', 'rb')
+print("Reading the micro-speech model")
+model_file = open('models/micro_speech_model.tflite', 'rb')
 model_file.readinto(micro_speech_model)
 model_file.close()
+print("model successfully read")
 
 currentFeatureData = None
 
@@ -68,7 +69,7 @@ def output_callback (microlite_interpreter):
         print ("results at %d = result = %d" % (index, result))
         inferenceResult[index] = result
 
-
+print("Configuring the audio frontend")
 af = microlite.audio_frontend()
 af.configure()
 
