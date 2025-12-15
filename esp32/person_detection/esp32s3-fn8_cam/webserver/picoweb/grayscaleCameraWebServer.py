@@ -1,20 +1,12 @@
-# grayscale_camera.py: Takes a grayscale 96x96 picture from the camera
-# and transforms it into a bmp file.
-# The bmp file is theen transmitted to the web browser for display
-# Copyright (c) U. Raich Dec. 2025
-# This program is part of the TinyML course
-# at the Univeersity of Cape Coast, Ghana
-# It is released under the MIT license
-
-import sys
-import asyncio
-from microdot import Microdot
-from wifi_connect import connect, getIPAddress
+import picoweb
+import time
+import network
 import camera
+import uasyncio as asyncio
+from machine import Pin, PWM
+from wifi_connect import connect, getIPAddress
 import struct
-# connect to WiFi
-connect()
-app = Microdot()
+import sys
 
 try:
     from hw_esp32_s3_fn8 import *
@@ -24,13 +16,12 @@ except:
 
 # connect to WiFi
 connect()
-
 print("Init camera")
 # Disable camera initialization
 camera.deinit()
 
 # Enable camera initialization
-print("We are on the ESP32-S3-FN8")
+print("Running picoweb on the ESP32-S3-FN8")
 
 cam_init_result = camera.init(0, d0=CAM_D0, d1=CAM_D1, d2=CAM_D2, d3=CAM_D3,
                               d4=CAM_D4, d5=CAM_D5, d6=CAM_D6, d7=CAM_D7,
@@ -89,50 +80,53 @@ reserved = 0
 offset = fileHdrSize + len(infoHdr) + len(palette)
 hdr = magic + struct.pack('ihhi',fileSize,reserved,reserved,offset)
 
-print("Starting the WEB server")
-
-@app.route('/')
-async def index(request):
-    return '''<!doctype html>
+html = '''<!doctype html>
 <html>
   <head>
-    <title>Microdot Video Streaming</title>
+    <title>PicoWeb Video Streaming</title>
     <meta charset="UTF-8">
   </head>
   <body>
-    <h1>Microdot Video Streaming</h1>
+    <h1>picoweb Video Streaming</h1>
     <img src="/video_feed">
   </body>
-</html>''', 200, {'Content-Type': 'text/html'}
+</html>'''
 
+print("Starting the WEB server")
+app = picoweb.WebApp("__main__")
+
+@app.route('/')
+async def index(req,resp):
+    yield from resp.awrite(html)
+    print("Starting video stream")
 
 @app.route('/video_feed')
-async def video_feed(request):
-    print('Starting video stream.')
-
-    # MicroPython can only use class-based async generators
-    class stream():
-        def __init__(self):
-            self.i = 0
-            
-        def __aiter__(self):
-            return self
-            
-        async def __anext__(self):
-            await asyncio.sleep_ms(10)
-            pixel_data = camera.capture()
-            # concatenate file header, info header, palette and pixel_data and write the bmp file
-            frame = hdr + infoHdr + palette + pixel_data 
-            return b'Content-Type: image/jpeg\r\n\r\n' + \
-                frame + b'\r\n--frame\r\n'
-            
-        async def aclose(self):
-            print('Stopping video stream.')
+async def video_feed(req,resp):
+    global frame_index
+    headers= """resp.Connection: keep-alive
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Expires: Thu, Jan 01 2024 00:00:00 GMT
+Pragma: no-cache
+"""
+    frame="""--frame
+Content-Type: image/bmp
+"""
+    print("start stream")    
+    yield from picoweb.start_response(resp, content_type='multipart/x-mixed-replace; boundary=frame')  
+    while True:
+        yield from resp.awrite(next(send_frame()))
+        gc.collect()
     
-    print("Type of stream(): ",type(stream()))
-    return stream(), 200, {'Content-Type':
-                           'multipart/x-mixed-replace; boundary=frame'}
+def send_frame():
+    # print("in send_frame")
+    # get a new image from the camera
+    pixel_data = camera.capture()
+    # concatenate file header, info header, palette and pixel_data and write the bmp file
+    frame = hdr + infoHdr + palette + pixel_data 
+    yield  (b'--frame\r\n'
+           b'Content-Type: image/jpeg\r\n\r\n'
+           + frame + b'\r\n')
 
-
+    
 if __name__ == '__main__':
-    app.run(debug=True,host=getIPAddress(), port=80)
+    app.run(debug=2,host=getIPAddress(), port=80)

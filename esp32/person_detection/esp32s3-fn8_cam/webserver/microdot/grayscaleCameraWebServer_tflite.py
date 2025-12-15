@@ -157,13 +157,11 @@ async def video_feed(request):
             not_a_person = outputTensor.getValue(0)
             person = outputTensor.getValue(1)
             print ("'not a person' = %d, 'person' = %d" % (not_a_person, person))
-            '''
             if person > 10:
                 neopixel[0] = (0,INTENSITY,0)   # green
             else:
                 neopixel[0] = (INTENSITY,0,0)   # red
-            neopixel.write()
-            '''    
+            neopixel.write()    
 
         def __aiter__(self):
             return self
