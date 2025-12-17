@@ -28,6 +28,10 @@ echo ""
 echo "Uploading hw_esp32_s3_fn8.py"
 ampy put ../../hardware/esp32s3-fn8_cam/hw_esp32_s3_fn8.py /lib/hw_esp32_s3_fn8.py
 
+echo "Uploading the hello_world.py program to /lib"
+echo "This is needed to get the run.sh script to work, capturing the sine values output be the model"
+ampy put hello_world.py hello_world.py
+
 if [[ $dirs == *"/models"* ]]
 then
     echo "/models directory already exists"

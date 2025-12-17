@@ -24,6 +24,13 @@ else
     ampy mkdir /lib
 fi
 
+echo "Uploading the hardwware definition file  hw_esp32_s3_fh4r2.py"
+ampy put ../../hardware/esp32-s3_fh4r2/hw_esp32_s3_fh4r2.py /lib/hw_esp32_s3_fh4r2.py
+
+echo "Uploading the hello_world.py program to /lib"
+echo "This is needed to get the run.sh script to work, capturing the sine values output be the model"
+ampy put hello_world.py hello_world.py
+
 if [[ $dirs == *"/models"* ]]
 then
     echo "/models directory already exists"
@@ -32,4 +39,4 @@ else
     ampy mkdir /models
 fi
 echo "Uploading the tensorflow lite model: hello_world_model.tflite"
-ampy put models/hello_world_model.tflite models/hello_world_model.tflite
+ampy put ../models/hello_world_model.tflite models/hello_world_model.tflite
