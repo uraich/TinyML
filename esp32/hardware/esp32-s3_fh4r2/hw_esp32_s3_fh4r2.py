@@ -8,18 +8,20 @@
 from micropython import const
 
 # neopixel
-NEOPIXEL        = const(47)
-NO_OF_NEOPIXELS = const(1)
-INTENSITY       = const(0x1f)
+NEOPIXEL          = const(47)
+NO_OF_NEOPIXELS   = const(1)
+INTENSITY         = const(0x1f)
 
+MATRIX            = const(16)
+NO_OF_MATRIX_LEDS = const(64)
 # user switch
-USER_SWITCH     = const(0)
+USER_SWITCH       = const(0)
 
 # I2C
-SCL             = const(12)
-SDA             = const(13)
+SCL               = const(12)
+SDA               = const(13)
 
 # microphone
-MIC_WS          = const(26)
-MIC_SCK         = const(22)
-MIC_SD          = const(21)
+MIC_WS            = const(26)
+MIC_SCK           = const(22)
+MIC_SD            = const(21)
