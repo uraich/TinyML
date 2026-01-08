@@ -75,9 +75,9 @@ class ESP32_BLE():
         self.ble_msg=""
         self._tmp_msg=bytearray()
         # Optionally add services=[_UART_UUID], but this is likely to make the payload too large.
-        # self._payload = advertising_payload(name=self._name, appearance=_ADV_APPEARANCE_GENERIC_COMPUTER)        
-        self._payload = bytearray('\x02\x01\x02','UTF-8') + \
-                        bytearray((len(self._name) + 1, 0x09),'UTF-8') + self._name        
+        self._payload = advertising_payload(name=self._name, appearance=_ADV_APPEARANCE_GENERIC_COMPUTER)        
+        # self._payload = bytearray('\x02\x01\x02','UTF-8') + \
+        #                 bytearray((len(self._name) + 1, 0x09),'UTF-8') + self._name        
         # get the device address and print it
         addr = self._ble.config("mac")
         mac = addr[1]
@@ -176,9 +176,17 @@ def demo():
             # if led_ble.ble_msg != "":
             #     print("new message: ",led_ble.ble_msg)
             if led_ble.any():
-                if led_ble.ble_msg == 'read_LED':
+                if led_ble.ble_msg == 'read LED':
                     print("LED is on" if led_ble.led.state else "LED is off")
                     led_ble.write("LED is on\r\n" if led_ble.led.state else "LED is off\r\n")
+                elif led_ble.ble_msg == "set LED off":
+                    print("Switching LED off")
+                    led_ble.led.off()
+                    led_ble.write("LED is now off")
+                elif led_ble.ble_msg == "set LED on":
+                    print("Switching LED on")
+                    led_ble.led.on()
+                    led_ble.write("LED is now on")                    
                 else:
                     print("Unknown command! Skipping")
                 led_ble.ble_msg = ""
