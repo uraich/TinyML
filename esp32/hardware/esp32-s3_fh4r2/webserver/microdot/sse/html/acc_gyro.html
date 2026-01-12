@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table, th, td {
+	  padding: 10x;
+	  border: 1px solid black;
+	  border-collapse: collapse;
+      }
+</style>
+    <title>Current accelerometer and gyroscope data using Microdot </title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>Current accelerometer and gyroscope data</h1>
+    <p> The measurements are taken from a LSM6DS3 accelerometer and gyroscope
+      every 500 ms. The data are transfered from the WEB server on the ESP32
+      to the WEB browser through <b>server side events</b>.
+    </p>
+    <div id="measTxt"> </div>
+    <br><br>
+    <table>
+      <tr>
+	<th align="left">LSM6DS3 measurement</th>
+	<th align="left">x</th>
+	<th align="left">y</th>
+	<th align="left">z</th>
+	<th align="left">timestamp</th>
+      </tr> 
+      <tr>
+	<td>accelerometer:</td>
+	<td id="acc_x">acc_x</td>
+	<td id="acc_y">acc_y</td>
+	<td id="acc_z">acc_z</td>
+	<td id="timeStamp">taken at: timeStamp</td>
+      </tr>
+      <tr>
+	<td>gyroscope:</td>
+	<td id="gyro_x">gyro_x</td>
+	<td id="gyro_y">gyro_y</td>
+	<td id="gyro_z">gyro_z</td>
+      </tr>
+    </table>
+    <br>
+    <script>
+      const log = (text, color) => {
+        document.getElementById('measTxt').innerHTML = `<span style="color: ${color}">${text}</span><br>`;
+      };
+
+      const eventSource = new EventSource('/events');
+
+      eventSource.onopen = () => {
+        log('Connection to server opened.', 'blue');
+      };
+
+      eventSource.onmessage = (event) => {
+	var meas = event.data;
+        log(`Received message from the SSE server: ${meas}`, 'black');
+	  var measArray=meas.split(",");
+	  document.getElementById("timeStamp").innerHTML = measArray[0];
+	  document.getElementById("acc_x").innerHTML = measArray[1];	  
+	  document.getElementById("acc_y").innerHTML = measArray[2];	  
+	  document.getElementById("acc_z").innerHTML = measArray[3];	  
+	  document.getElementById("gyro_x").innerHTML = measArray[4];	  
+	  document.getElementById("gyro_y").innerHTML = measArray[5];	  
+	  document.getElementById("gyro_z").innerHTML = measArray[6];	  
+	  
+      };
+
+      eventSource.onerror = (event) => {
+        log(`EventSource failed: ${event.type}`, 'red');
+      };
+    </script>
+  </body>
+</html>

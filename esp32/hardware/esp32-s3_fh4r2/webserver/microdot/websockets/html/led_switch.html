@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acquire switch and control led</title>
+  <!--- <link rel="stylesheet" href="led_switch.css"> --->
+
+  <style>
+    /* center the title */
+    h1 {
+      text-align: center;
+    }
+    /* center the box with the color sliders */
+    .sliderContainer{
+      display: block;
+      width: fit-content;
+      margin: auto;
+      margin-bottom: 50px;
+      /* border: 1px solid black; */ 
+    }
+    /* stylethe box with the color sliders */
+    .sliders {
+      display: flex;
+      /* border: 1px solid black;*/
+      align-items: center;
+    }
+
+    .colorTitle{
+      display:block;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: xx-large;
+    }
+
+    .ledColor{
+      display: block;
+      width: fit-content;
+      margin: auto;
+      margin-bottom: 20px;
+      /* border: 1px solid black;*/
+    }
+    /* the ledCanvas shows which color the LED will have */
+    .ledCanvas {
+      margin: auto;
+      outline: black 1px solid;
+      margin-right: 20px;
+    }
+    .submitBtn {
+      font-size: x-large;
+    }
+
+    .ledColorLabel{
+      font-size: x-large;
+      margin-right: 20px;
+    }
+    /* the container showing the switch state implemented as a toggle button */
+    
+    .switchContainer{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* border: 1px solid black; */
+      width: fit-content;
+      margin:auto;
+    }
+
+    .switchLabel {
+      font-size: x-large;
+    }
+
+    /* Hide the checkbox */
+    #toggle {
+      display: none;
+    }
+
+    /* Style the label as a toggle switch */
+    .toggleLabel {
+      display: inline-block;
+      font-size: x-large;
+      width: 50px;
+      height: 25px;
+      background-color: #ccc;
+      border-radius: 25px;
+      position: relative;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background-color 0.3s;
+    }
+
+    /* Create the inner circle of the switch */
+    label::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 19px;
+      height: 19px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    /* Change background color when checked */
+    #toggle:checked + label {
+      background-color: #2196F3;
+    }
+
+    /* Move the inner circle when checked */
+    #toggle:checked + label::before {
+      transform: translateX(25px);
+    }
+    /* The outgoing and incoming messages */
+    .messages {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Acquire switch state and control LED via WEB sockets</h1>
+  <label class="colorTitle">LED color selection</label>
+  <div class="sliderContainer">
+    <label>red</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="red_color">
+    <label>green</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="green_color">
+    <label>blue</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="blue_color">
+  </div>
+  <div class = ledColor>
+    <label class="ledColorLabel">LED color</label>
+    <canvas id="ledCanvas" class="ledCanvas" width="20" height="20">
+    </canvas>
+    <button type="submit" id="submitBtn" class="submitBtn">Submit</button>
+  </div>
+ 
+  <div class="switchContainer">
+    <span class="switchLabel">Toggle Switch:</span>
+    <input type="checkbox" id="toggle" />
+    <label for="toggle" class="toggleLabel"></label>
+  </div>
+  <!-- Here go the outgoing and incoming WebSocket messages for control -->
+  <div>
+    <div class="messages">
+      <label class="msg">Outgoing message:</label>
+      <label id="outgoing">outgoing</label>
+    </div>
+      <label class="msg">Incoming message:</label>
+      <label id="incoming">incoming</label>
+    </div>
+    <div>
+      <label class="log">Log:</label>
+      <label id="log">no msg yet</label>
+    </div> 
+  </div>
+ 
+  <script>
+    let redSlider = document.getElementById("red_color");
+    let greenSlider = document.getElementById("green_color");
+    let blueSlider = document.getElementById("blue_color");
+    let colorCanvas = document.getElementById("ledCanvas");
+    let submitBtn = document.getElementById("submitBtn");
+    let switchToggle = document.getElementById("toggle");
+    let outgoing = document.getElementById("outgoing");
+    let incoming = document.getElementById("incoming");
+    let logMsg = document.getElementById("log");
+
+    let red = 0;
+    let green = 0;
+    let blue = 0;
+    let rgbColor = `rgb(${red}, ${green}, ${blue})`;
+    let currentSwitchState = false;
+    let ctx = colorCanvas.getContext("2d");
+    ctx.fillStyle = rgbColor;
+    ctx.fillRect(0,0,colorCanvas.width,colorCanvas.height);
+    ctx.stroke();
+
+    redSlider.oninput = function() {
+      red = redSlider.value;
+      console.log("red color: ",red)
+      rgbColor = `rgb(${red}, ${green}, ${blue})`;
+      ctx.fillStyle = rgbColor;
+      ctx.fillRect(0,0,colorCanvas.width,colorCanvas.height);
+      ctx.stroke();
+    }
+    greenSlider.oninput = function() {
+      green = greenSlider.value;
+      console.log("green color: ",green);
+      rgbColor = `rgb(${red}, ${green}, ${blue})`;
+      ctx.fillStyle = rgbColor;
+      ctx.fillRect(0,0,colorCanvas.width,colorCanvas.height);
+      ctx.stroke();
+    }
+    blueSlider.oninput = function() {
+      blue = blueSlider.value;
+      console.log("blue color: ",blue)
+      rgbColor = `rgb(${red}, ${green}, ${blue})`;
+      ctx.fillStyle = rgbColor;
+      ctx.fillRect(0,0,colorCanvas.width,colorCanvas.height);
+      ctx.stroke();
+    }
+    /* Do not allow the user to change the switch toggle state */
+    switchToggle.onclick = function() {
+      switchToggle.checked = currentSwitchState;
+    }
+
+    const log = (text, color) => {
+      logMsg.innerHTML = `<span style="color: ${color}">${text}</span><br>`;
+    };
+    
+    // create a WebSocket connection to the ESP32
+    console.log("location.host: ",location.host);
+    console.log("Creating WebSocket");
+    const socket = new WebSocket('ws://' + location.host + '/led_switch');
+    log("Creating WebSocket connection","blue");
+    socket.addEventListener('message', ev => {
+      incoming.innerHTML = ev.data;
+      console.log("Msg received: ev.data");
+      if (ev.data == "open") 
+        switchToggle.checked = false;
+      else if (ev.data == "closed")
+        switchToggle.checked = true;
+      else
+        log("Unknown switch message: " + ev.data,"red");
+    });
+    socket.addEventListener('close', ev => {
+      log('WebSocket closed','blue');
+    });
+    
+    submitBtn.onclick = ev => {
+      ev.preventDefault();
+      let rgbText = red.toString(10) + ", " 
+        + green.toString(10) + ", " 
+        + blue.toString(10);
+        console.log("Submitting rgb:" + rgbText);
+      socket.send(rgbText);
+      outgoing.innerHTML = rgbText;
+    };
+    
+  </script>
+</body>
+</html>

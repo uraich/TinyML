@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED and Switch on the ESP32</title>
+  <link rel="stylesheet" href="html/ledAndSwitch.css">
+</head>
+<body>
+  <h1 class="title">Acquire switch state and control LED via WEB sockets</h1>
+  <!-- A container with the color sliders-->
+  <div class="sliderContainer">
+    <label class="colorTitle">LED color selection</label>
+    <div class="sliders">
+      <label>red</label>
+      <input type="range" min="0" max="255" value="0" class="slider" id="red_color">
+      <label>green</label>
+      <input type="range" min="0" max="255" value="0" class="slider" id="green_color">
+      <label>blue</label>
+      <input type="range" min="0" max="255" value="0" class="slider" id="blue_color">
+    </div>
+  </div>
+    <div class = ledColor>
+    <label class="ledColorLabel">LED color</label>
+    <canvas id="ledCanvas" class="ledCanvas" width="20" height="20">
+    </canvas>
+    <button type="submit" id="submitBtn" class="submitBtn">Submit</button>
+  </div>
+  <!-- a container for the switch state --> 
+  <div class="switchContainer">
+    <span>Toggle Switch:</span>
+    <input type="checkbox" id="switchToggle" />
+    <label for="switchToggle" class="toggleLabel"></label>
+  </div>
+  <div>
+    <div class="messages">
+      <label class="msg">Outgoing message:
+      </label>
+      <label id="outgoing">outgoing</label>
+    </div>
+    <div>
+      <label class="msg">Incoming message:
+      </label>
+      <label id="incoming">incoming</label>
+    </div>
+  </div>
+  <input type="checkbox" id="testBox">
+  <label for="testBox">test checkbox</label>
+  <script>
+    let testBox = document.getElementById("testBox");
+    let switchBox = document.getElementById("switchToggle");
+    let currentSwitchState = false;
+    testBox.onclick = function() {
+      if (testBox.checked) {
+        console.log("checked");
+        switchBox.checked = true;
+        currentSwitchState = true;
+      }
+      else {
+        console.log("not checked")
+        switchBox.checked = false;
+        currentSwitchState = false;       
+      }
+    }
+    switchBox.onclick = function() {
+      /* Do not allow the user to change the state of the switch checkbox */
+      switchBox.checked = currentSwitchState;
+    }
+  </script>
+</body>
+</html>
