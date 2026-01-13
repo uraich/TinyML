@@ -11,6 +11,7 @@ from micropython import const
 NEOPIXEL          = const(47)
 NO_OF_NEOPIXELS   = const(1)
 INTENSITY         = const(0x1f)
+GRB               = True
 
 MATRIX            = const(16)
 NO_OF_MATRIX_LEDS = const(64)
@@ -18,8 +19,15 @@ NO_OF_MATRIX_LEDS = const(64)
 USER_SWITCH       = const(0)
 
 # I2C
-SCL               = const(12)
-SDA               = const(13)
+SCL               = const(36)
+SDA               = const(35)
+
+# I2C for lsm6ds3
+# The lsm6ds3 I2C signals had to be replaced due to hardware reasons.
+# Only like this the lsm6ds3 could be mounted on the WeMos prototype board
+LSM6DS3_SCL       = const(12)
+LSM6DS3_SDA       = const(13)
+
 
 # microphone
 MIC_WS            = const(26)
