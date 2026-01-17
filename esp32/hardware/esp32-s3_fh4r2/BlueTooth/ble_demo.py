@@ -1,3 +1,20 @@
+# ble_demo.py: A demonstration of BlueTooth Low Energy communication
+# to read and write sensors and actuators on the ESP32
+# This program can be used either with the Serial BlueTooth terminal or
+# nrf Connect on the smart phone or with the led_switch[.html,.css,.js)
+# WEB program
+# The commands to be used with the mobile phone programs are:
+# set LED on : switch the LED on (in blue color)
+# set LED off: switches the LED off
+# read LED: returns the current state of the LED (on or off)
+# LED rgb: r,g,b where r,g,b are values in the range 0..255
+#          The LED will switch to the corresponding color
+# When you push the boot button, the state change will be reported
+# Copyright (c) U. Raich, January 2026
+# This prohram is part of the TinyML course at the
+# University of Cape Coast, Ghana
+# It is released uder the MIT license
+
 from machine import Pin
 from neopixel import NeoPixel
 from machine import Pin,Timer
