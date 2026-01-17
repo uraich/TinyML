@@ -1,29 +1,36 @@
 from machine import Pin
 from neopixel import NeoPixel
-from machine import Timer
+from machine import Pin,Timer
 from time import sleep_ms
 import struct
 import bluetooth
 from ble_advertising import advertising_payload
 from hw_esp32_s3_fh4r2 import *
 
+import sys
+try:
+    from hw_esp32_s3_fh4r2 import *
+except:
+    print("Please make sure hw_esp32_s3_fh4r2.py has been uploaded to /lib")
+    sys.exit()
+
 _IRQ_CENTRAL_CONNECT = const(1)
 _IRQ_CENTRAL_DISCONNECT = const(2)
 _IRQ_GATTS_WRITE = const(3)
 
 # Nordic UART Service (NUS)
-_NUS_UUID = bluetooth.UUID('6E400001-B5A3-F393-E0A9-E50E24DCCA9E')
+_NUS_UUID = bluetooth.UUID('6e400001-b5a3-f393-e0a9-e50e24dcca9e')
 _BLE_TX   = (
-    bluetooth.UUID("6E400003-B5A3-F393-E0A9-E50E24DCCA9E"),
+    bluetooth.UUID("6e400003-b5a3-f393-e0a9-e50e24dcca9e"),
     bluetooth.FLAG_NOTIFY,
 )
 _BLE_RX = (
-    bluetooth.UUID("6E400002-B5A3-F393-E0A9-E50E24DCCA9E"),
+    bluetooth.UUID("6e400002-b5a3-f393-e0a9-e50e24dcca9e"),
     bluetooth.FLAG_WRITE,
 )    
 _NUS_SERVICE = (
     _NUS_UUID,
-    (_BLE_TX, _BLE_RX),
+    (_BLE_TX, _BLE_RX,),
 )
     
 # org.bluetooth.characteristic.gap.appearance.xml
@@ -46,7 +53,26 @@ class BLE_led():
         self.led[0] = (0,0,INTENSITY)
         self.led.write()
         self.state = True
-
+        
+    # map values from 0..255 to 0..INTENSITY
+    def scale(self,color):
+       return int(color*INTENSITY/255.0)
+    
+    def rgb(self,red,green,blue):
+        try:
+            color_switch = GRB
+        except:
+            color_switch = False;
+        if color_switch:            
+            self.led[0] = (self.scale(green),self.scale(red),self.scale(blue))
+        else:
+            self.led[0] = (self.scale(red),self.scale(green),self.scale(blue))
+        self.led.write()
+        if red+green+blue <= 0:
+            self.state = False
+        else:
+            self.state = True
+        
     def toggle(self):
         if self.state:
             self.off()
@@ -75,7 +101,8 @@ class ESP32_BLE():
         self.ble_msg=""
         self._tmp_msg=bytearray()
         # Optionally add services=[_UART_UUID], but this is likely to make the payload too large.
-        self._payload = advertising_payload(name=self._name, appearance=_ADV_APPEARANCE_GENERIC_COMPUTER)        
+        self._payload = advertising_payload(name=self._name,services=[_NUS_UUID])
+        # self._payload = advertising_payload(name=self._name, appearance=_ADV_APPEARANCE_GENERIC_COMPUTER)        
         # self._payload = bytearray('\x02\x01\x02','UTF-8') + \
         #                 bytearray((len(self._name) + 1, 0x09),'UTF-8') + self._name        
         # get the device address and print it
@@ -120,13 +147,21 @@ class ESP32_BLE():
             # if value_handle == self._rx_handle:
             #     print("rx handle found")
             if conn_handle in self._connections and value_handle == self._rx_handle:
-                # print("reading ble")
-                self._tmp_msg +=self._ble.gatts_read(self._rx_handle).decode()
-                # print("buffer after read: ",self._tmp_msg)
+                print("reading ble")
+                tmp = self._ble.gatts_read(self._rx_handle)
+                try:
+                    self._tmp_msg = tmp.decode()
+                except:
+                    self.tmp_msg = tmp
+                # self._tmp_msg = self._ble.gatts_read(self._rx_handle).decode()
+                print("buffer after read: ",self._tmp_msg)
+                print("Message type: ",type(self._tmp_msg))
                 if '\r' in self._tmp_msg or '\n' in self._tmp_msg:
                     self.ble_msg = self._tmp_msg.strip()
-                    print("Message received from central: ",self.ble_msg)
-                    self._tmp_msg = ""
+                else:
+                     self.ble_msg = self._tmp_msg 
+                print("Message received from central: ",self.ble_msg)
+                self._tmp_msg = ""
 
     def any(self):
         if len(self.ble_msg):
@@ -162,20 +197,22 @@ def demo():
     ble = bluetooth.BLE()
     led_ble = ESP32_BLE(ble)
 
-    button = Pin(0,Pin.IN)
+    button = Pin(USER_SWITCH,Pin.IN)
 
     def buttons_irq(pin):
-        led_ble.led.toggle()
-        led_ble.write('LED state will be toggled\r\n')
-        print('LED state will be toggled')
+        if (button.value()):
+            led_ble.write('switch state: open\r\n')
+        else:
+            led_ble.write('switch state: closed\r\n')            
 
-    button.irq(trigger=Pin.IRQ_FALLING, handler=buttons_irq)
+    button.irq(trigger=Pin.IRQ_FALLING | Pin.IRQ_RISING, handler=buttons_irq)
 
     try:
         while True:
             # if led_ble.ble_msg != "":
             #     print("new message: ",led_ble.ble_msg)
             if led_ble.any():
+                print("Decoding: ",led_ble.ble_msg)
                 if led_ble.ble_msg == 'read LED':
                     print("LED is on" if led_ble.led.state else "LED is off")
                     led_ble.write("LED is on\r\n" if led_ble.led.state else "LED is off\r\n")
@@ -186,9 +223,18 @@ def demo():
                 elif led_ble.ble_msg == "set LED on":
                     print("Switching LED on")
                     led_ble.led.on()
-                    led_ble.write("LED is now on")                    
+                    led_ble.write("LED is now on")
+                elif "LED rgb:" in led_ble.ble_msg:
+                    print(led_ble.ble_msg)
+                    colors = led_ble.ble_msg.split(":")
+                    rgb = colors[1].split(",")
+                    if len(rgb) == 3:
+                        print("red: ",int(rgb[0])," green: ",int(rgb[1]),", blue: ",int(rgb[2]))
+                        led_ble.led.rgb(int(rgb[0]),int(rgb[1]),int(rgb[2]))
+                    else:
+                        print("Invalid message: ",led_ble.ble_msg)
                 else:
-                    print("Unknown command! Skipping")
+                    print("Unknown command: {:s}! Skipping".format(led_ble.ble_msg))
                 led_ble.ble_msg = ""
             sleep_ms(100)
         

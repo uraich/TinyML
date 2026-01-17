@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acquire switch and control led</title>
+  <link rel="stylesheet" href="led_switch.css"> 
+</head>
+<body>
+  <h1>Acquire switch state and control LED via WEB sockets</h1>
+  <label class="colorTitle">LED color selection</label>
+  <div class="sliderContainer">
+    <label>red</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="red_color">
+    <label>green</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="green_color">
+    <label>blue</label>
+    <input type="range" min="0" max="255" value="0" class="slider" id="blue_color">
+  </div>
+  <div class = ledColor>
+    <label class="ledColorLabel">LED color</label>
+    <canvas id="ledCanvas" class="ledCanvas" width="20" height="20">
+    </canvas>
+    <button type="submit" id="submitBtn" class="submitBtn">Submit</button>
+  </div>
+ 
+  <div class="switchContainer">
+    <span class="switchLabel">Toggle Switch:</span>
+    <input type="checkbox" id="toggle" />
+    <label for="toggle" class="toggleLabel"></label>
+  </div>
+  <div class="connectionBox">
+    <!-- a button to connect to the server through BlueTooth-->
+    <button id="connectBtn">Connect to BlueTooth</button>
+    <button id="disconnectBtn">Disconnect from BlueTooth</button>
+  </div>
+  <!-- Here go the outgoing and incoming WebSocket messages for control -->
+  <div>
+    <div class="messages">
+      <label class="msg">Outgoing message:</label>
+      <label id="outgoing">outgoing</label>
+    </div>
+      <label class="msg">Incoming message:</label>
+      <label id="incoming">incoming</label>
+    </div>
+    <div>
+      <label class="log">status:</label>
+      <label id="log">no msg yet</label>
+    </div> 
+  </div>
+ 
+  <script src="led_switch.js"> </script>
+ 
+</body>
+</html>

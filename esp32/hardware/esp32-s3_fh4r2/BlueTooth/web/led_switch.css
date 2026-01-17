@@ -1,0 +1,126 @@
+   /* style sheet for led_switch.html */
+   /* center the title */
+    h1 {
+      text-align: center;
+    }
+    /* center the box with the color sliders */
+    .sliderContainer{
+      display: block;
+      width: fit-content;
+      margin: auto;
+      margin-bottom: 50px;
+      /* border: 1px solid black; */ 
+    }
+    /* stylethe box with the color sliders */
+    .sliders {
+      display: flex;
+      /* border: 1px solid black;*/
+      align-items: center;
+    }
+
+    .colorTitle{
+      display:block;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: xx-large;
+    }
+
+    .ledColor{
+      display: block;
+      width: fit-content;
+      margin: auto;
+      margin-bottom: 20px;
+      /* border: 1px solid black;*/
+    }
+    /* the ledCanvas shows which color the LED will have */
+    .ledCanvas {
+      margin: auto;
+      outline: black 1px solid;
+      margin-right: 20px;
+    }
+    .submitBtn {
+      font-size: x-large;
+    }
+
+    .ledColorLabel{
+      font-size: x-large;
+      margin-right: 20px;
+    }
+    /* the container showing the switch state implemented as a toggle button */
+    
+    .switchContainer{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* border: 1px solid black; */
+      width: fit-content;
+      margin:auto;
+      margin-bottom: 30px;
+    }
+
+    .switchLabel {
+      font-size: x-large;
+    }
+
+    /* Hide the checkbox */
+    #toggle {
+      display: none;
+    }
+
+    /* Style the label as a toggle switch */
+    .toggleLabel {
+      display: inline-block;
+      font-size: x-large;
+      width: 50px;
+      height: 25px;
+      background-color: #ccc;
+      border-radius: 25px;
+      position: relative;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background-color 0.3s;
+    }
+
+    /* Create the inner circle of the switch */
+    label::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 19px;
+      height: 19px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .connectionBox {
+      width: fit-content;
+      margin: auto;
+    }
+    
+    #connectBtn {
+      display: inline;
+      width: fit-content;
+      margin: auto;
+      font-size: x-large;
+    }
+    #disconnectBtn {
+      display: none;
+      width: fit-content;
+      margin: auto;
+      font-size: x-large;
+    }
+    /* Change background color when checked */
+    #toggle:checked + label {
+      background-color: #2196F3;
+    }
+
+    /* Move the inner circle when checked */
+    #toggle:checked + label::before {
+      transform: translateX(25px);
+    }
+
+    /* The outgoing and incoming messages */
+    .messages {
+      margin-top: 50px;
+    }
