@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLE Temperature</title>
+  <link rel="stylesheet" type="text/css" href="ble_temp.css"> 
+</head>
+<body>
+  <h1 class="title">BLE thermometer</h1>
+  <div id="wrapper">	
+	  <div id="termometer">
+		  <div id="temperature" style="height:0" data-value="0°C"></div>
+		  <div id="graduations"></div>
+	  </div>
+	</div>
+  <div class="connectionBox">
+    <button id="connectBtn">Connect to Device</button>
+    <button id="disconnectBtn">Disconnect the device</button>
+  </div>
+
+  <div id="playground">		
+			<input id="minTemp" type="text" value="-20">
+      <p id="unit">Celcius C°</p>
+			<input id="maxTemp" type="text" value="50">
+	</div>
+	
+	<p id="info">Click on the values to change them!</p>
+  
+</div>
+  <div class="msgBox">
+    <div>
+      <label>Status:</label>
+      <label id="status">Disconnected</label>
+    </div>
+    <div>
+      <label>Device Name:</label>
+      <label id="deviceName"></label>
+    </div>
+    <div>
+      <label>Device Id:</label>
+      <label id="deviceId"></label>
+    </div>
+    <div>
+      <label>New temperature value:</label>
+    <label id="tempLabel"></label>
+    </div>
+  </div>
+  <script src="ble_temp.js"></script>
+</body>
+</html>
