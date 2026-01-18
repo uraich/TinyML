@@ -11,3 +11,5 @@ Here is the sequence of steps:
 * Start `html/ble_temp.html` on your PC
 * Press the connect button and select mpy-temp for pairing
 * This will connect the WEB page (BLE central) with the ESP32 (BLE peripheral). The LED on the ESP32 will be steady on and you should see the thermometer update with the temperature values mesured by the peripheral.
+This is what you should see on the screen:
+<img title="BLE Thermometer" alt="BLE Thermometer" src="images/ble_term.png">
