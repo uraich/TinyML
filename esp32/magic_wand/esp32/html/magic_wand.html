@@ -87,7 +87,7 @@
 	font-size: 15px;
     }
     
-    .bluetooth-label {
+    .status-label {
 	margin-top: 14px;    
     }
 
@@ -128,8 +128,8 @@
     </div>
     <div class="status widget">
       <a class="button" id="downloadButton">Download Data</a>
-      <button class="button" id="bigButton">Web Socket</button>
-      <div class="bluetooth-label" id="websocket">Click button to connect to the board</div>
+      <button class="button" id="connectBtn">Web Socket</button>
+      <div class="status-label" id="status">Click button to connect to the board</div>
       <div class="count-label" id="count"></div>
     </div>
 
@@ -141,27 +141,84 @@
     <div class="gesture_store"></div>
     <script>
       // UI elements
-      const bigButton = document.getElementById('bigButton');
-      const BLEstatus = document.getElementById('web_socket');
+      const connectBtn = document.getElementById('connectBtn');
+      const status = document.getElementById('status');
+      const count = document.getElementById('count');
 
-      function msg(m){
-      BLEstatus.innerHTML = m;
+      const msg = (text, color) => {
+        status.innerHTML = `<span style="color: ${color}">${text}</span><br>`;
       }
+      let socket = null;
+     // sleep a number of ms
+      async function sleep_ms(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+     }
+     
+     // connect to web socket by clicking the connectBtn
+     connectBtn.addEventListener('click',connect);
 
      async function connect() {
-      bigButton.style.backgroundColor="grey";
-      const socket = new WebSocket('ws://' + location.host + '/magic_wand')
-      msg('Creating Web Socket to ' + location.host);
+        connectBtn.style.backgroundColor="grey";
+            socket = new WebSocket('ws://' + location.host + '/magic_wand');
+        msg("Creating Web Socket to " + location.host,"blue");
+        await sleep_ms(500); // show this for 500 ms
+        console.log("Creating Web Socket to " + location.host);
 
-      socket.addEventListener('message', ev => {
-        incoming.innerHTML = ev.data;
-        console.log("Msg received: ev.data");
-      });
+        console.log("readState Connecting:" ,WebSocket.CONNECTING);  
+        console.log("readState Connected:" ,WebSocket.OPEN);
+        console.log("readState Closing:" ,WebSocket.CLOSING);
+        console.log("readState Closed:" ,WebSocket.CLOSED);
 
-      socket.addEventListener('close', ev => {
-        msg('WebSocket closed');
-      });
+        for (let i=0; i<10;i++) {
+            if (socket.readyState != WebSocket.OPEN)
+                await sleep_ms(100);  // wait until connection is established
+            else{
+                break;
+            }
+        }
+
+        if (socket.readyState != WebSocket.OPEN) {
+            console.log("Web socket connection failed");
+            msg("Web socket connection failed","red");
+            await sleep_ms(1000);  // show this for 1 s
+            msg("Click button to connect to the board","white");
+            connectBtn.style.backgroundColor = null; // fall back to the standard color
+        }
+        else {
+            console.log("Connected to " + location.host);
+            msg("Connected to " + location.host,"green");
+            setupEventListeners();
+        }
+    }
+
+    function setupEventListeners() {
+        console.log("Setting up message handler");
+        socket.addEventListener('message', ev => {
+        handleIncoming(ev.data)
+        });
+
+        socket.addEventListener('close', ev => {
+            console.log("Web socket connection closed");
+            closeConnection();
+        });
+
+        async function closeConnection() {
+           msg("Web socket connection failed","red");
+            await sleep_ms(1000);  // show this for 1 s
+            msg("Click button to connect to the board","white");
+            connectBtn.style.backgroundColor = null; // fall back to the standard color
+        }
+    }
+    async function handleIncoming(new_data) {
+        console.log("Msg received: ", typeof new_data);        
+        console.log("data: ",new_data);
+        data = new DataView(await new_data.arrayBuffer());
+        let stroke_status = data.getInt32(0,true); // get them in little-endian byte order
+        let stroke_length = data.getInt32(4,true);
+        console.log("stroke status ",stroke_status);
+        console.log("stroke_length",stroke_length);
     }
     </script>  
 </body>
 </html>
+

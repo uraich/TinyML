@@ -185,8 +185,11 @@ async def writeMsg():
                 await asyncio.sleep_ms(100)
                 continue
             else:
-                await ws.send("Hello")
-                await asyncio.sleep_ms(1000)
+                for digit_no in range(10):
+                    transmitBuffer = createTransmitBuffer(digit_no)
+                    await ws.send(transmitBuffer)
+                    await asyncio.sleep_ms(5000)
+
     except OSError as err:
         # print("Error code: ",errno.errorcode[err.errno])
         # print("errno: ",err.errno," ECONNRESET: ",errno.ECONNRESET)
