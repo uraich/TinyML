@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Magic Wand Gesture Recorder</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+    body {
+	font-family: 'Roboto', sans-serif; 
+	color: #888888; 
+	background: #000000; 
+	font-size: small;
+    }
+    .square {
+	width: 640px;
+	height: 640px;
+    }
+    .button {
+	background-color: aqua; 
+	border: none; 
+	color: black; 
+	padding: 1px; 
+	text-align: center;
+	text-decoration: none; 
+	font-size: 12px; 
+	margin: 12px 20px; 
+	height: 20px; 
+	width: 100px;
+	border-radius: 10%; 
+	outline:none; 
+	font-family: 'Roboto', sans-serif;
+	float: left;
+    }
+    
+    #bigButton {
+	float:left;
+    }
+    
+    #downloadButton {
+	float: left;
+    }
+
+    .container {
+	width:860px;
+	height:384px;
+	margin-top:30px;
+	margin-bottom:7.5px;  
+	margin: 0 auto; 
+	position: relative;
+    }
+
+    .widget {
+	background: #111111;
+	border: 1px solid #000000;
+	border-radius: 0px;
+	padding: 12px;
+	margin: 6px;
+	float: left;
+	width: 340px;
+	height: 340px;
+    }
+
+    .status {
+	/* background-image: url("logo.png"); */
+	background-size: 80px;
+	background-position: 98% 50%;
+	/* background-repeat: no-repeat; */
+	width: 885px;  height: 42px;
+	color: white;
+    }
+    
+    .square {
+	width: 320px;  height: 320px;
+	position: relative;
+	float: left;
+    }
+    
+    .label {
+	height: 20px;
+	min-width: 100px;
+	display: inline;
+	font-size: 15px;
+	float: left;
+    }
+  
+    .intro {
+	font-size: 15px;
+    }
+    
+    .bluetooth-label {
+	margin-top: 14px;    
+    }
+
+    .count-label {
+	margin-top: -14px;
+	float: right;
+	margin-right: 158px;
+	text-align: right;
+    }
+    
+    .gesture_store {
+	width: 400px;
+	height: 500px;
+	float: left;
+	overflow-y: scroll;
+    }
+    
+    .trash {
+	float: right;
+	font-size: x-large;
+	cursor: pointer;
+    }
+  </style>
+  
+</head>
+<body>
+  <h1 class="title">Magic Wand Gesture Recorder</h1>
+  <div class="container">
+    <div class="intro">
+      To get started recording magic wand gestures:
+      <ul>
+        <li>Upload the ESP32 magic wand MicroPython programm to the LoLin ESP32 S3 mini board</li>
+        <li>Connect to the board using the Web Socket button below.</li>
+        <li>Wave the wand to make gestures. They'll be recorded and displayed on the right.</li>
+        <li>Review the gestures, add labels by clicking on the '?', and remove mistakes.</li>
+        <li>Download the gestures as a JSON data file, ready for model training.</li>
+      </ul>
+    </div>
+    <div class="status widget">
+      <a class="button" id="downloadButton">Download Data</a>
+      <button class="button" id="bigButton">Web Socket</button>
+      <div class="bluetooth-label" id="websocket">Click button to connect to the board</div>
+      <div class="count-label" id="count"></div>
+    </div>
+
+    <div class="widget">
+      <div id="stroke_label" class="label"></div>
+      <canvas id="stroke" class="square"> </canvas>
+    </div>
+    
+    <div class="gesture_store"></div>
+    <script>
+      // UI elements
+      const bigButton = document.getElementById('bigButton');
+      const BLEstatus = document.getElementById('web_socket');
+
+      function msg(m){
+      BLEstatus.innerHTML = m;
+      }
+
+     async function connect() {
+      bigButton.style.backgroundColor="grey";
+      const socket = new WebSocket('ws://' + location.host + '/magic_wand')
+      msg('Creating Web Socket to ' + location.host);
+
+      socket.addEventListener('message', ev => {
+        incoming.innerHTML = ev.data;
+        console.log("Msg received: ev.data");
+      });
+
+      socket.addEventListener('close', ev => {
+        msg('WebSocket closed');
+      });
+    }
+    </script>  
+</body>
+</html>
