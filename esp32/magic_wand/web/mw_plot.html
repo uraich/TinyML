@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Magic Wand Gesture Recorder</title>
+  <link rel="stylesheet" href="magic_wand.css">
+</head>
+<body>
+  <h1 class="title">Magic Wand Gesture Recorder</h1>
+  <div class="container">
+    <div class="intro">
+      To get started recording magic wand gestures:
+      <ul>
+        <li>Reads a json file with gesture data for each digit and plots them</li>
+        <li>Used for development and test reasons only</li>
+        <li>The code is later to be integrated into the magic wand web program</li>
+    </div>
+    <div class="status widget">
+      <a class="button" id="downloadButton">Download Data</a>
+      <button class="button" id="bigButton">Bluetooth</button>
+      <div class="bluetooth-label" id="bluetooth">Click button to connect to the board</div>
+      <div class="count-label" id="count"></div>
+    </div>
+
+    <div class="widget">
+      <div id="stroke_label" class="label"></div>
+      <canvas id="stroke" class="square"> </canvas>
+    </div>
+    
+    <div class="gesture_store"></div>
+    <script src="mw_plot.js"></script>
+</body>
+</html>
