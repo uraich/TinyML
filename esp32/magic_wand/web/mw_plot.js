@@ -1,12 +1,40 @@
 /* read the digits.json file containing 10 gestures, one for each digit */
 
-const STROKE_STATUS = 2; // code for "done"
+const WAITING = 0; // code for "waiting"
+const DRAWING = 1;
+const DONE = 2;
 var maxRecords = 64;
+/* this is the main program 
+   It reads the json file and then calls treatData to extract the state, length and stroke data */
 
 fetch('digits.json')
     .then((response) => response.json())  // parse the json file
     .then(data => treatData(data))        // work with the data
     .catch(error => console.error('Error fetching digits.json: ',error));
+
+// sleep a number of ms
+async function sleep_ms(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/* converts the dictionary read from the json file into a dataview with the same
+   format as the ones coming from the esp32 via BlueTooth BLE or web sockets */
+
+async function treatData(data) {
+  // treat all the digits, waiting 5s between each plot
+  for (let i=0;i<10;i++) {
+    dv = dict2dataview(data["strokes"][i]);
+    dv.setInt32(0,DRAWING,true);     
+    handleIncoming(sensor.stroke,dv); // this will draw into the left canvas
+    await sleep_ms(2000);
+    /* now set state to done */
+    // let doneBuffer = new ArrayBuffer(8);
+    // let doneView = new DataView(doneBuffer);
+    dv.setInt32(0,DONE,true); // set stroke status to done
+    handleIncoming(sensor.stroke,dv);
+    await sleep_ms(5000);
+  }
+}
 
 /* this functions takes a strokePoints dictionary and converts it into a DataView 
    identical to what we see, when stroke data are transmitted through BlueTooth of web sockets. 
@@ -20,7 +48,7 @@ function dict2dataview(dict) {
   let buffer = new ArrayBuffer(2*strokeLength +2*4);
   console.log("Length of buffer: ",(buffer.byteLength-8)/2);
   let dv = new DataView(buffer);
-  dv.setInt32(0,STROKE_STATUS,true); // fill the status field
+  dv.setInt32(0,DONE,true); // fill the status field to drawing
   dv.setInt32(4,strokeLength,true);  // and the stroke length field
  
   /* The rest of the ArrayBuffer within the DataView are one byte signed x,y values */
@@ -35,18 +63,18 @@ function dict2dataview(dict) {
   /* The rest of the code is just used for visualization on the console */
   let bufview = new Uint8Array(buffer);  // this is needed to get at the values of buffer
 
-  console.log("status: ",bufview[0].toString(16),bufview[1].toString(16),bufview[2].toString(16),bufview[3].toString(16));
-  console.log("length: ",bufview[4].toString(16),bufview[5].toString(16),bufview[6].toString(16),bufview[7].toString(16));
-  // console.log("status with toHex: 0x",bufview.slice(0,4).toHex());
+  // console.log("status: ",bufview[0].toString(16),bufview[1].toString(16),bufview[2].toString(16),bufview[3].toString(16));
+  // console.log("length: ",bufview[4].toString(16),bufview[5].toString(16),bufview[6].toString(16),bufview[7].toString(16));
 
   let line = [];
   for (let i=0; i<16;i++) {   // print the first 8 x and y values
     line.push("0x" + bufview.slice(2*i+8,2*i+9).toHex());
     line.push(", 0x" + bufview.slice(2*i+9,2*i+10).toHex());
   }
-  console.log(line);
+  console.log("First 8 x,y values: ",line);
   return dv;
 }
+
 var storedStrokes = [];
   
 function storeStroke(strokePoints) {
@@ -60,7 +88,8 @@ function storeStroke(strokePoints) {
 '      </div>';
   var storeDiv = document.querySelector('.gesture_store');
   var parser = new DOMParser();
-  var html = parser.parseFromString(template, 'text/html');    
+  var html = parser.parseFromString(template, 'text/html');
+  console.log(html.body.firstChild);
   storeDiv.prepend(html.body.firstChild);
   
   var strokeLabel = document.querySelector('#store_' + storeIndex +' > .label');
@@ -74,7 +103,7 @@ function storeStroke(strokePoints) {
   const ctx = strokeCanvas.getContext('2d');
   ctx.fillStyle = "#111111";
   ctx.fillRect(0, 0, strokeCanvas.width, strokeCanvas.height);  
-
+  console.log("stroke length: ",strokePoints.length);
   drawStrokeGraph(strokeCanvas, strokePoints, strokePoints.length);
   
   storedStrokes.push({
@@ -94,17 +123,28 @@ function onLabelFocus(event) {
   }
 }
   
-function onLabelBlur(event) {
+async function onLabelBlur(event) {
   var parent = event.target.parentElement;
   var id = parent.id;
   var index = Number(id.replace('store_', ''));
+  console.log("onLabelBlur, index: ",index);
   var entry = storedStrokes.find(entry => entry.index === index);
-  entry.label = event.target.innerText;
+  console.log("event.target.innerText: ",event.target.innerText);
+
+  
+  /* if there was some text before, which was eliminated, a lf is returned */
+  if (event.target.innerText.trim().length == 0){   
+    event.target.innerText = "?";
+    entry.label = "";
+  }
+  else 
+    entry.label = event.target.innerText;
+    console.log("entry.label: ",entry.label);
   onStoreChange();
 }
 
 function onLabelKeydown(event) {
-  if (event.keyCode == 13) {
+  if (event.keyCode == 13) {   // key 13 is key 0xd which is the return key
     event.preventDefault();
     event.target.blur();
   }  
@@ -180,7 +220,7 @@ function updateStrokeGraph() {
   var strokeState = strokeData.state.latest();
   var strokePoints = strokeData.strokePoints.latest();
   strokePoints = strokePoints.slice(0, strokeDataLength);
-  
+  console.log("updateStrokeGraph");
   if ((strokeState == 2) && (previousStrokeState != 2)) {
     storeStroke(strokePoints); 
   }
@@ -233,15 +273,6 @@ Array.prototype.latest = function(){
   return this[this.length - 1];
 };
 
-function treatData(data) {
-  console.log("Converting data to dataview format");
-  for (let i=0;i<1;i++) {
-    dv = dict2dataview(data["strokes"][i]);
-  }
-  console.log("Sensor: ",sensor);
-  handleIncoming(sensor.stroke,dv);
-}
-
 function getStrokePoints(dataview, byteOffset, littleEndian) {
     var result = [];
     var currentOffset = byteOffset;
@@ -269,11 +300,11 @@ entry.y = 6
 console.log("entry: ",entry);
 
 function handleIncoming(sensor, dataReceived) {
-  console.log("In handleIncoming: sensor:",sensor);
-  console.log("sensor.data: ",sensor.data);
-  console.log(dataReceived);
+  // console.log("In handleIncoming: sensor:",sensor);
+  // console.log("sensor.data: ",sensor.data);
+  // console.log(dataReceived);
   strokeLength = dataReceived.getInt32(4,true);
-  console.log("in handleIncoming, strokeLength: ",strokeLength);
+  // console.log("in handleIncoming, strokeLength: ",strokeLength);
   const columns = Object.keys(sensor.data); // column headings for this sensor
   const typeMap = {
     "Uint8":    {fn:DataView.prototype.getUint8,    bytes:1},
@@ -282,55 +313,54 @@ function handleIncoming(sensor, dataReceived) {
     "Float32":  {fn:DataView.prototype.getFloat32,  bytes:4},
     "StrokePoints": {fn:getStrokePoints, bytes:(strokeLength* 2 * 1)},
   };
-    var packetPointer = 0,i = 0;
 
-    /* Check if we got real data */
-    // if (dataReceived.byteLength == 0)
-    //   return;
+  var packetPointer = 0,i = 0;
 
-    console.log("handle_incoming, sensor: ",sensor);
-    console.log("structure: ",sensor.structure)
-    console.log("handle_incoming, data: ",dataReceived);
+  // console.log("handle_incoming, sensor: ",sensor);
+  // console.log("structure: ",sensor.structure)
+  // console.log("handle_incoming, data: ",dataReceived);
     
-    // Read each sensor value in the BLE packet and push into the data array
-    sensor.structure.forEach(function(dataType){      
-      var unpackedValue;
-      if (dataType === "StrokePoints") {
-        console.log("packetPointer,i: ",packetPointer,i);
-        var dataViewFn = typeMap[dataType].fn;
-        console.log("dataViewFn: ",dataViewFn);
-        unpackedValue = dataViewFn(dataReceived, packetPointer,true);
-        console.log("unpacked value: ",unpackedValue[0]);
-      } else {
-        var dataViewFn = typeMap[dataType].fn.bind(dataReceived);
-        unpackedValue = dataViewFn(packetPointer,true);
-        console.log("unpacked value: ",unpackedValue);
-      }
-      // Push sensor reading onto data array
-      sensor.data[columns[i]].push(unpackedValue);
-      // Keep array at buffer size
-      if (sensor.data[columns[i]].length> maxRecords) {sensor.data[columns[i]].shift();}
-      // move pointer forward in data packet to next value
-      packetPointer += typeMap[dataType].bytes;
-      bytesReceived += typeMap[dataType].bytes;
-      i++;
-    });
-    console.log("state: ",sensor.data[columns[0]]);
-    console.log("length: ",sensor.data[columns[1]]);
-    sensor.rendered = false; // flag - vizualization needs to be updated
-    console.log("sensor.onUpdate: ", sensor.onUpdate);
-    if (typeof sensor.onUpdate != 'undefined') {
-      sensor.onUpdate();
+  /* Extracts state, stroke length and the stroke from the dataview */
+  sensor.structure.forEach(function(dataType){      
+    var unpackedValue;
+    if (dataType === "StrokePoints") {
+      console.log("packetPointer,i: ",packetPointer,i);
+      var dataViewFn = typeMap[dataType].fn;
+      console.log("dataViewFn: ",dataViewFn);
+      unpackedValue = dataViewFn(dataReceived, packetPointer,true);
+      console.log("unpacked value: ",unpackedValue[0]);
+    } else {
+      var dataViewFn = typeMap[dataType].fn.bind(dataReceived);
+      unpackedValue = dataViewFn(packetPointer,true);
+      console.log("unpacked value: ",unpackedValue);
     }
+
+    // Push sensor reading onto data array
+    sensor.data[columns[i]].push(unpackedValue);
+    // Keep array at buffer size
+    if (sensor.data[columns[i]].length> maxRecords) {sensor.data[columns[i]].shift();}
+    // move pointer forward in data packet to next value
+    packetPointer += typeMap[dataType].bytes;
+    bytesReceived += typeMap[dataType].bytes;
+    i++;
+  });
+  console.log("state: ",sensor.data[columns[0]]);
+  console.log("length: ",sensor.data[columns[1]]);
+  sensor.rendered = false; // flag - vizualization needs to be updated
+  console.log("sensor.onUpdate: ", sensor.onUpdate);
+  if (typeof sensor.onUpdate != 'undefined') {
+    sensor.onUpdate();
   }
+}
 
 function updateStrokeGraph() {
+  console.log("In updateStrokeGraph");
   var strokeData = sensor['stroke'].data;
   var strokeDataLength = strokeData.length.latest();
   var strokeState = strokeData.state.latest();
   var strokePoints = strokeData.strokePoints.latest();
   strokePoints = strokePoints.slice(0, strokeDataLength);
-  
+  console.log("previousStrokeState: ",previousStrokeState, ", current stroke state: ",strokeState);
   if ((strokeState == 2) && (previousStrokeState != 2)) {
     storeStroke(strokePoints); 
   }
