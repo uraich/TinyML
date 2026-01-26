@@ -15,6 +15,7 @@ from micropython import const
 from machine import Pin, Timer
 from neopixel import NeoPixel
 import json
+from time import sleep_ms
 from struct import pack
 from micropython import const
 from microdot import Microdot, send_file
@@ -72,7 +73,9 @@ WAITING = const(0)
 DRAWING = const(1)
 DONE    = const(2)
 STROKE_TRANSMIT_STRIDE = const(2)
-STROKE_LENGTH = const(160)
+global stroke_length
+stroke_length = 0
+strokePointDict = {}
 
 # Read the strokes json file
 print("Reading digits.json")
@@ -85,20 +88,24 @@ except:
         
 # gets the stroke points for a particular digit
 def findStroke(digit_no):
+    global stroke_length
     for i in range(10):
         if strokes["strokes"][i]["label"] == str(digit_no):
             print("Stroke {:d} found!".format(digit_no))
-    return strokes["strokes"][digit_no]["strokePoints"]
+    strokePointDict = strokes["strokes"][digit_no]["strokePoints"]
+    stroke_length = len(strokePointDict)    
+    print("Stroke length for digit {:d}: {:d}".format(digit_no,stroke_length))
+    return strokePointDict
 
 def printTransmitBuffer(transmitBuffer):
     print("--------------------- Transmit Buffer ------------------------")
-    print("No of stroke points: ",(len(transmitBuffer)-8)//STROKE_TRANSMIT_STRIDE)
+    print("No of stroke points: ",stroke_length)
     print("State:",end=" ")
     for i in range(3):
         print("0x{:02x},".format(transmitBuffer[i]),end=" ")
     print("0x{:02x}".format(transmitBuffer[3]))
     print("Stroke Length:",end=" ")
-    for i in range(4,8):
+    for i in range(4,7):
         print("0x{:02x},".format(transmitBuffer[i]),end=" ")
     print("0x{:02x}".format(transmitBuffer[7]))
     
@@ -110,13 +117,13 @@ def printTransmitBuffer(transmitBuffer):
         print("0x{:02x},".format(transmitBuffer[i]),end=" ")
     print("0x{:02x}".format(transmitBuffer[len(transmitBuffer)-1]))
 
-def createTransmitBuffer(digit_no):
-    status = DONE
+def createTransmitBuffer(digit_no,status,startPoint,endPoint):
     strokePoints = findStroke(digit_no)
     byteStrokePoints = bytearray([])
-    
-    print(strokePoints[0])
-    for i in range(len(strokePoints)):
+    if endPoint > stroke_length:
+          endPoint = stroke_length;
+    print("startPoint: {:d}, endPoint: {:d}".format(startPoint,endPoint))
+    for i in range(startPoint,endPoint):
         tmp_x = round(float(strokePoints[i]["x"])*128.0)
         if i == 0:
             print("type of x[0]: ",type(tmp_x))
@@ -132,16 +139,18 @@ def createTransmitBuffer(digit_no):
         if tmp_y > 127:
             tmp_y = 127
         byteStrokePoints += tmp_y.to_bytes()
-
-    print("x[0]: ",byteStrokePoints[0])
-    print("y[0]: ",byteStrokePoints[1])
-
-    transmitBufferHeader = pack("<ii",status,len(byteStrokePoints)//STROKE_TRANSMIT_STRIDE)
-    padding = bytearray(STROKE_LENGTH*STROKE_TRANSMIT_STRIDE - len(byteStrokePoints))
-    print("Padding length: ",len(padding))
-    transmitBuffer = transmitBufferHeader + byteStrokePoints + padding
+        
+    if endPoint > startPoint:
+        print("No of stroke points in packet: ",endPoint - startPoint)
+    transmitBufferHeader = pack("<ii",status,endPoint - startPoint)
+    # transmitBufferHeader = pack("<ii",status,len(byteStrokePoints)//STROKE_TRANSMIT_STRIDE)
+    # padding = bytearray(STROKE_LENGTH*STROKE_TRANSMIT_STRIDE - len(byteStrokePoints))
+    # print("Padding length: ",len(padding))
+    # transmitBuffer = transmitBufferHeader + byteStrokePoints + padding
+    transmitBuffer = transmitBufferHeader + byteStrokePoints
+    printTransmitBuffer(transmitBuffer)
     print("Length of transmit buffer: ",len(transmitBuffer))
-    print("Should be: ",160*2+8)
+    print("Should be: ",(endPoint-startPoint)*2+8)
     # printTransmitBuffer(transmitBuffer)
     return transmitBuffer
 
@@ -154,7 +163,7 @@ async def index(request):
 ws = None
 @app.route('/magic_wand')
 async def magic_wand(request):
-    global ws
+    global ws,stroke_length
     try:
         asyncio.create_task(writeMsg())
         ws = await websocket_upgrade(request)
@@ -186,9 +195,38 @@ async def writeMsg():
                 continue
             else:
                 for digit_no in range(10):
-                    transmitBuffer = createTransmitBuffer(digit_no)
+                    await asyncio.sleep_ms(500)
+                    print("Send waiting msg")
+                    transmitBuffer = createTransmitBuffer(digit_no,WAITING,0,0)
+                    printTransmitBuffer(transmitBuffer)
+                    await ws.send(transmitBuffer)    
+                    await asyncio.sleep_ms(500)
+                    
+                    print("Send drawing slices")                    
+                    for stroke_slice in range(0,stroke_length,10):
+                        print("stroke length: {:d}, slice: {:d} .. {:d}".format(
+                            stroke_length,stroke_slice,stroke_slice+10))
+                        transmitBuffer = createTransmitBuffer(digit_no,
+                                                              DRAWING,
+                                                              stroke_slice,
+                                                              stroke_slice+10)
+                        print("Length of transmit buffer: ",len(transmitBuffer))
+                        printTransmitBuffer(transmitBuffer)
+                        await ws.send(transmitBuffer)                  
+                        await asyncio.sleep_ms(500)
+
+                    print("Send the full stroke")                    
+                    transmitBuffer = createTransmitBuffer(digit_no,
+                                                          DONE,
+                                                          0,
+                                                          stroke_length)
+                    
                     await ws.send(transmitBuffer)
                     await asyncio.sleep_ms(5000)
+                    
+                # stop here to further check the JavaScript program
+                while True:
+                    await asyncio.sleep(5000)
 
     except OSError as err:
         # print("Error code: ",errno.errorcode[err.errno])

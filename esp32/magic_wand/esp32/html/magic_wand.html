@@ -1,224 +1,505 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Magic Wand Gesture Recorder</title>
-  <style>
-    @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Magic Wand Gesture Recorder</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
-    body {
-	font-family: 'Roboto', sans-serif; 
-	color: #888888; 
-	background: #000000; 
-	font-size: small;
-    }
-    .square {
-	width: 640px;
-	height: 640px;
-    }
-    .button {
-	background-color: aqua; 
-	border: none; 
-	color: black; 
-	padding: 1px; 
-	text-align: center;
-	text-decoration: none; 
-	font-size: 12px; 
-	margin: 12px 20px; 
-	height: 20px; 
-	width: 100px;
-	border-radius: 10%; 
-	outline:none; 
-	font-family: 'Roboto', sans-serif;
-	float: left;
-    }
+        body {
+        font-family: 'Roboto', sans-serif; 
+        color: #888888; 
+        background: #000000; 
+        font-size: small;
+        }
+        .square {
+        width: 640px;
+        height: 640px;
+        }
+
+        .button {
+        background-color: aqua; 
+        border: none; 
+        color: black; 
+        padding: 1px; 
+        text-align: center;
+        text-decoration: none; 
+        font-size: 12px; 
+        margin: 12px 20px; 
+        height: 20px; 
+        width: 100px;
+        border-radius: 10%; 
+        outline:none; 
+        font-family: 'Roboto', sans-serif;
+        float: left;
+        }
+        
+        #connectBtn {
+        float:left;
+        }
+        
+        #downloadBtn {
+        float: left;
+        }
+
+        .container {
+        width:860px;
+        height:384px;
+        margin-top:30px;
+        margin-bottom:7.5px;  
+        margin: 0 auto; 
+        position: relative;
+        }
+
+        .widget {
+        background: #111111;
+        border: 1px solid #000000;
+        border-radius: 0px;
+        padding: 12px;
+        margin: 6px;
+        float: left;
+        width: 340px;
+        height: 340px;
+        }
+
+        .status {
+        /* background-image: url("logo.png"); */
+        background-size: 80px;
+        background-position: 98% 50%;
+        /* background-repeat: no-repeat; */
+        width: 885px;  height: 42px;
+        color: white;
+        }
+        
+        .square {
+        width: 320px;  height: 320px;
+        position: relative;
+        float: left;
+        }
+        
+        .label {
+        height: 20px;
+        min-width: 100px;
+        display: inline;
+        font-size: 15px;
+        float: left;
+        }
     
-    #bigButton {
-	float:left;
-    }
+        .intro {
+        font-size: 15px;
+        }
+        
+        .status-label {
+        margin-top: 14px;    
+        }
+
+        .count-label {
+        margin-top: -14px;
+        float: right;
+        margin-right: 158px;
+        text-align: right;
+        }
+        
+        .gesture_store {
+        width: 400px;
+        height: 500px;
+        float: left;
+        overflow-y: scroll;
+        }
+        
+        .trash {
+        float: right;
+        font-size: x-large;
+        cursor: pointer;
+        }
+    </style>
     
-    #downloadButton {
-	float: left;
-    }
+    </head>
+    <body>
+        <h1 class="title">Magic Wand Gesture Recorder</h1>
+        <div class="container">
+        <div class="intro">    
+            To get started recording magic wand gestures:
+            <ul>
+                <li>Upload the ESP32 magic wand MicroPython programm to the LoLin ESP32 S3 mini board</li>
+                <li>Connect to the board using the Web Socket button below.</li>
+                <li>Wave the wand to make gestures. They'll be recorded and displayed on the right.</li>
+                <li>Review the gestures, add labels by clicking on the '?', and remove mistakes.</li>
+                <li>Download the gestures as a JSON data file, ready for model training.</li>
+            </ul>
+        </div>
+        <div class="status widget">
+            <button class="button" id="downloadBtn">Download Data</button>
+            <button class="button" id="connectBtn">Web Socket</button>
+            <div class="status-label" id="status">Click button to connect to the board</div>
+            <div class="count-label" id="count"></div>
+        </div>
 
-    .container {
-	width:860px;
-	height:384px;
-	margin-top:30px;
-	margin-bottom:7.5px;  
-	margin: 0 auto; 
-	position: relative;
-    }
+        <div class="widget">
+            <div id="stroke_label" class="label"></div>
+            <canvas id="stroke" class="square"> </canvas>
+        </div>
+        
+        <div class="gesture_store"></div>
 
-    .widget {
-	background: #111111;
-	border: 1px solid #000000;
-	border-radius: 0px;
-	padding: 12px;
-	margin: 6px;
-	float: left;
-	width: 340px;
-	height: 340px;
-    }
-
-    .status {
-	/* background-image: url("logo.png"); */
-	background-size: 80px;
-	background-position: 98% 50%;
-	/* background-repeat: no-repeat; */
-	width: 885px;  height: 42px;
-	color: white;
-    }
-    
-    .square {
-	width: 320px;  height: 320px;
-	position: relative;
-	float: left;
-    }
-    
-    .label {
-	height: 20px;
-	min-width: 100px;
-	display: inline;
-	font-size: 15px;
-	float: left;
-    }
-  
-    .intro {
-	font-size: 15px;
-    }
-    
-    .status-label {
-	margin-top: 14px;    
-    }
-
-    .count-label {
-	margin-top: -14px;
-	float: right;
-	margin-right: 158px;
-	text-align: right;
-    }
-    
-    .gesture_store {
-	width: 400px;
-	height: 500px;
-	float: left;
-	overflow-y: scroll;
-    }
-    
-    .trash {
-	float: right;
-	font-size: x-large;
-	cursor: pointer;
-    }
-  </style>
-  
-</head>
-<body>
-  <h1 class="title">Magic Wand Gesture Recorder</h1>
-  <div class="container">
-    <div class="intro">
-      To get started recording magic wand gestures:
-      <ul>
-        <li>Upload the ESP32 magic wand MicroPython programm to the LoLin ESP32 S3 mini board</li>
-        <li>Connect to the board using the Web Socket button below.</li>
-        <li>Wave the wand to make gestures. They'll be recorded and displayed on the right.</li>
-        <li>Review the gestures, add labels by clicking on the '?', and remove mistakes.</li>
-        <li>Download the gestures as a JSON data file, ready for model training.</li>
-      </ul>
-    </div>
-    <div class="status widget">
-      <a class="button" id="downloadButton">Download Data</a>
-      <button class="button" id="connectBtn">Web Socket</button>
-      <div class="status-label" id="status">Click button to connect to the board</div>
-      <div class="count-label" id="count"></div>
-    </div>
-
-    <div class="widget">
-      <div id="stroke_label" class="label"></div>
-      <canvas id="stroke" class="square"> </canvas>
-    </div>
-    
-    <div class="gesture_store"></div>
-    <script>
-      // UI elements
-      const connectBtn = document.getElementById('connectBtn');
-      const status = document.getElementById('status');
-      const count = document.getElementById('count');
-
-      const msg = (text, color) => {
-        status.innerHTML = `<span style="color: ${color}">${text}</span><br>`;
-      }
-      let socket = null;
-     // sleep a number of ms
-      async function sleep_ms(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-     }
-     
-     // connect to web socket by clicking the connectBtn
-     connectBtn.addEventListener('click',connect);
-
-     async function connect() {
-        connectBtn.style.backgroundColor="grey";
-            socket = new WebSocket('ws://' + location.host + '/magic_wand');
-        msg("Creating Web Socket to " + location.host,"blue");
-        await sleep_ms(500); // show this for 500 ms
-        console.log("Creating Web Socket to " + location.host);
-
-        console.log("readState Connecting:" ,WebSocket.CONNECTING);  
-        console.log("readState Connected:" ,WebSocket.OPEN);
-        console.log("readState Closing:" ,WebSocket.CLOSING);
-        console.log("readState Closed:" ,WebSocket.CLOSED);
-
-        for (let i=0; i<10;i++) {
-            if (socket.readyState != WebSocket.OPEN)
-                await sleep_ms(100);  // wait until connection is established
-            else{
-                break;
+        <script>
+            // UI elements
+            const connectBtn = document.getElementById('connectBtn');
+            const status = document.getElementById('status');
+            const count = document.getElementById('count');
+            const stroke_status_label = document.getElementById('stroke_label');
+             
+            /* prints a message on the status label in a defined color */
+            const msg = (text, color) => {
+                status.innerHTML = `<span style="color: ${color}">${text}</span><br>`;
             }
-        }
 
-        if (socket.readyState != WebSocket.OPEN) {
-            console.log("Web socket connection failed");
-            msg("Web socket connection failed","red");
-            await sleep_ms(1000);  // show this for 1 s
-            msg("Click button to connect to the board","white");
-            connectBtn.style.backgroundColor = null; // fall back to the standard color
-        }
-        else {
-            console.log("Connected to " + location.host);
-            msg("Connected to " + location.host,"green");
-            setupEventListeners();
-        }
-    }
+            async function temporary_msg(text,color) {
+                let current_background = status.style.backgroundColor;
+                let current_text = status.innerHTML;
+                console.log("current text: ",current_text);
+                msg(text,color);
+                await sleep_ms(1000); // display the message during 1 s
+                status.innerHTML = `<span style="color: ${current_background}">${current_text}</span><br>`;
+            }
+            const STATUS = Object.freeze({
+                    WAITING: 0,
+                    DRAWING: 1,
+                    DONE: 2,
+            })
 
-    function setupEventListeners() {
-        console.log("Setting up message handler");
-        socket.addEventListener('message', ev => {
-        handleIncoming(ev.data)
-        });
+            let socket = null;
+            let currentStroke = [];
+  
+            // sleep a number of ms
+            async function sleep_ms(ms) {
+                return new Promise((resolve) => setTimeout(resolve, ms));
+            }
 
-        socket.addEventListener('close', ev => {
-            console.log("Web socket connection closed");
-            closeConnection();
-        });
+            // return last item of array
+            Array.prototype.latest = function(){
+                return this[this.length - 1];
+            };
 
-        async function closeConnection() {
-           msg("Web socket connection failed","red");
-            await sleep_ms(1000);  // show this for 1 s
-            msg("Click button to connect to the board","white");
-            connectBtn.style.backgroundColor = null; // fall back to the standard color
-        }
-    }
-    async function handleIncoming(new_data) {
-        console.log("Msg received: ", typeof new_data);        
-        console.log("data: ",new_data);
-        data = new DataView(await new_data.arrayBuffer());
-        let stroke_status = data.getInt32(0,true); // get them in little-endian byte order
-        let stroke_length = data.getInt32(4,true);
-        console.log("stroke status ",stroke_status);
-        console.log("stroke_length",stroke_length);
-    }
-    </script>  
-</body>
-</html>
+            /* ---------------------------------------------------*/
+            /* This is the main program
+            /* ---------------------------------------------------*/
+
+            // connect to web socket by clicking the connectBtn
+            connectBtn.addEventListener('click',connect);
+            initStrokeGraph();
+
+            async function connect() {
+                if (socket != null && socket.readyState == WebSocket.OPEN) {
+                    temporary_msg("Connection is already open","red");
+                    return;
+                }
+                connectBtn.style.backgroundColor="grey";
+                    socket = new WebSocket('ws://' + location.host + '/magic_wand');
+                msg("Creating Web Socket to " + location.host,"blue");
+                await sleep_ms(500); // show this for 500 ms
+                console.log("Creating Web Socket to " + location.host);
+
+                console.log("readState Connecting:" ,WebSocket.CONNECTING);  
+                console.log("readState Connected:" ,WebSocket.OPEN);
+                console.log("readState Closing:" ,WebSocket.CLOSING);
+                console.log("readState Closed:" ,WebSocket.CLOSED);
+
+                for (let i=0; i<10;i++) {
+                    if (socket.readyState != WebSocket.OPEN)
+                        await sleep_ms(100);  // wait until connection is established
+                    else{
+                        break;
+                    }
+                }
+                // checks if he connection has been established
+                if (socket.readyState != WebSocket.OPEN) {
+                    console.log("Web socket connection failed");
+                    msg("Web socket connection failed","red");
+                    await sleep_ms(1000);  // show this for 1 s
+                    msg("Click button to connect to the board","white");
+                    connectBtn.style.backgroundColor = null; // fall back to the standard color
+                }
+                else {
+                    console.log("Connected to " + location.host);
+                    msg("Connected to " + location.host,"green");
+                    connectBtn.style.backgroundColor = `rgb(129, 233, 69)`; // light green
+                    setupEventListeners();
+                }
+            }
+            /* Sets up the event listeners for incoming messages and
+               for disconnection */
+
+            function setupEventListeners() {
+                console.log("Setting up message handler");
+                socket.addEventListener('message', ev => {
+                handleIncoming(ev.data)
+                });
+
+                socket.addEventListener('close', ev => {
+                    console.log("Web socket connection closed");
+                    closeConnection();
+                });
+
+                async function closeConnection() {
+                msg("Web socket connection failed","red");
+                    await sleep_ms(1000);  // show this for 1 s
+                    msg("Click button to connect to the board","white");
+                    connectBtn.style.backgroundColor = null; // fall back to the standard color
+                }
+            }
+            /* handles incoming data
+               The packet is converted into a dataview for further treatment 
+               Gets the stroke status and updates the message on the basic canvas
+               If we are in drawing state, draw on the main canvas
+               If we are going from done state to waiting, copy the main canvas to
+               the store
+               */
+            async function handleIncoming(new_data) {
+                console.log("Msg received: ", typeof new_data);        
+                console.log("data: ",new_data);
+                dataview = new DataView(await new_data.arrayBuffer());
+                updateStrokeGraph(dataview);
+            }
+
+            function getStrokePoints(dataview, littleEndian) {
+                var result = [];
+                var currentOffset = 8;
+                // read the length of the gesture
+                let strokeLength = dataview.getInt32(4,true);
+                console.log("stroke length read from dataview: ",strokeLength);
+                console.log("offset: ",currentOffset);
+
+                for (var i = 0; i < strokeLength; ++i) {
+                    var entry = {};
+                    entry.x = dataview.getInt8(currentOffset, littleEndian) / 128.0;
+                    currentOffset += 1;
+                    entry.y = dataview.getInt8(currentOffset, littleEndian) / 128.0;
+                    currentOffset += 1;
+                    console.log("offset: ",currentOffset, "stroke length: ",strokeLength, " entry: ",entry);
+                    result.push(entry);
+                }
+                return result;
+            }
+
+
+            function initStrokeGraph() {
+                var canvas = document.getElementById('stroke');
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = "#111111";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            function drawStrokeGraph(canvas, strokePoints, strokeDataLength) {
+                const ctx = canvas.getContext('2d');
+
+                var canvasWidth = canvas.width;
+                var canvasHeight = canvas.height;
+                var halfHeight = canvasHeight / 2;
+                var halfWidth = canvasWidth / 2;
+  
+                ctx.strokeStyle = "#ffffff";
+                ctx.beginPath();
+                for (var i = 0; i < strokeDataLength; ++i) {
+                    var x = strokePoints[i].x;
+                    var y = strokePoints[i].y;
+    
+                    var xCanvas = halfWidth + (x * halfWidth);
+                    var yCanvas = halfHeight - (y * halfHeight);
+    
+                    if (i === 0) {
+                        ctx.moveTo(xCanvas, yCanvas);
+                    } 
+                    /*else if (i == (strokeDataLength - 1)) {
+                        ctx.lineTo(xCanvas+5, yCanvas+5);
+                        ctx.lineTo(xCanvas-5, yCanvas-5);
+                        ctx.moveTo(xCanvas+5, yCanvas-5);
+                        ctx.moveTo(xCanvas-5, yCanvas+5);      
+                    }*/ 
+                    else {
+                    ctx.lineTo(xCanvas, yCanvas);
+                    }
+                }
+                ctx.stroke();  
+            }
+            function clearCanvas(canvas) {
+                const ctx = canvas.getContext('2d');
+
+                ctx.fillStyle = "#111111";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);  
+ 
+            }
+            var previousStrokeState = STATUS.WAITING;
+
+            function updateStrokeGraph(dataview) {
+                
+                var label = document.getElementById('stroke_label');
+                var canvas = document.getElementById('stroke');
+                
+                var strokeState = dataview.getInt32(0,true);
+                var strokeDataLength = dataview.getInt32(4,true);
+                
+                var strokePoints = getStrokePoints(dataview,true)
+                currentStroke = currentStroke.concat(strokePoints);
+                console.log("Current length of stroke: ",currentStroke.length/2);
+
+                // strokePoints = strokePoints.slice(0, strokeDataLength);
+                
+                if ((strokeState == STATUS.DONE) && (previousStrokeState != STATUS.DONE)) {
+                    storeStroke(strokePoints);
+                    clearCanvas(canvas);
+                    currentStroke = [];
+                }
+                
+                previousStrokeState = strokeState;
+
+                if (strokeState == STATUS.WAITING) {
+                    label.innerText = "Waiting for gesture";
+                } else if (strokeState == STATUS.DRAWING) {
+                    label.innerText = "Drawing";    
+                } else {
+                    label.innerText = "Done";
+                    clearCanvas(canvas);    
+                }
+
+                if (strokeState == STATUS.DRAWING) {
+                    console.log("No of stroke points: ",currentStroke.length);
+                    drawStrokeGraph(canvas, currentStroke, currentStroke.length);
+                }
+            }
+            var storedStrokes = [];
+  
+            function storeStroke(strokePoints) {
+                var storeIndex = storedStrokes.length;
+  
+                var template =
+                '      <div class="widget" id="store_' + storeIndex +'">' +
+                '        <div contenteditable="true" class="label"></div>' +
+                '        <div class="trash">&#128465;</div>' +
+                '        <canvas width="640px" height="640px" class="square"></canvas>' +
+                '      </div>';
+                var storeDiv = document.querySelector('.gesture_store');
+                var parser = new DOMParser();
+                var html = parser.parseFromString(template, 'text/html');    
+                storeDiv.prepend(html.body.firstChild);
+  
+                var strokeLabel = document.querySelector('#store_' + storeIndex +' > .label');
+                strokeLabel.innerText = "?";
+                strokeLabel.onfocus = onLabelFocus;
+                strokeLabel.onblur = onLabelBlur;
+                strokeLabel.onkeydown = onLabelKeydown;
+  
+                var strokeCanvas = document.querySelector('#store_' + storeIndex +' > canvas');
+    
+                const ctx = strokeCanvas.getContext('2d');
+                ctx.fillStyle = "#111111";
+                ctx.fillRect(0, 0, strokeCanvas.width, strokeCanvas.height);  
+
+                drawStrokeGraph(strokeCanvas, strokePoints, strokePoints.length);
+  
+                storedStrokes.push({
+                    index: storeIndex,
+                    strokePoints: strokePoints,
+                    label: '',
+                });
+                onStoreChange();
+  
+                var strokeTrash = document.querySelector('#store_' + storeIndex +' > .trash');
+                strokeTrash.onclick = onTrashClick;
+            }
+
+            function onLabelFocus(event) {
+                if (event.target.innerText === '?') {
+                    event.target.innerText = '';
+                }
+            }
+    
+            async function onLabelBlur(event) {
+                var parent = event.target.parentElement;
+                var id = parent.id;
+                var index = Number(id.replace('store_', ''));
+                console.log("event.target.innerText: ",event.target.innerText);
+
+                if ((event.target.innerText.trim().length == 0)) {
+                    console.log("event comes from ",typeof event.target);
+                    event.target.innerText = "?";
+                }
+                else {
+                    var entry = storedStrokes.find(entry => entry.index === index);
+                    entry.label = event.target.innerText;
+                    onStoreChange();
+                }
+            }                
+            
+            function onLabelKeydown(event) {
+                if (event.keyCode == 13) {  // key 13 is key 0xd which is the return key
+                    event.preventDefault();
+                    event.target.blur();
+                }  
+            }
+
+            function onTrashClick(event) {
+                var parent = event.target.parentElement;
+                var id = parent.id;
+                parent.remove();
+
+                var index = Number(id.replace('store_', ''));
+                storedStrokes = storedStrokes.filter(entry => entry.index !== index);
+                onStoreChange();
+            }
+  
+            function onStoreChange() {
+                var data = {
+                    strokes: storedStrokes,
+                };
+                /*
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+                console.log("on store change");
+                console.log("length of store: ",storedStrokes.length);
+                var downloadBtn = document.querySelector('#downloadBtn');
+                downloadBtn.setAttribute('href', dataStr);
+                downloadBtn.setAttribute('download', 'wanddata.json');
+                */
+                var count = document.querySelector('#count');
+                count.innerText = storedStrokes.length;
+            }
+
+            function download() {
+                var data = {
+                    strokes: storedStrokes,
+                };
+               var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+
+                //creating an invisible element
+
+                let element = document.createElement('a');
+                element.setAttribute('href',dataStr);
+                element.setAttribute('download', "magic_wand_data.json");
+                document.body.appendChild(element);
+                element.click();
+
+                document.body.removeChild(element);
+            }
+
+            // Start file download.
+
+            document.getElementById("downloadBtn").addEventListener("click", async function () {
+                /* check if there are any strokes in the store */
+                if (storedStrokes.length == 0) {
+                    temporary_msg("There are no registered strokes yet, download refused","red");
+                    return;             
+                }
+                /* check if all labels have been defined */
+                console.log("No of strokes in store: ",storedStrokes.length);
+                for (let i=0; i<storedStrokes.length; i++) {
+                    console.log (`Stroke ${i} label: ${storedStrokes[i].label}`);
+                    if (storedStrokes[i].label === "") {
+                        temporary_msg("Not all labels are defined yet, download refused","red");
+                        return;
+                    }
+                }
+                download();
+            }, false);
+        </script>  
+    </body>
+    </html>
 
