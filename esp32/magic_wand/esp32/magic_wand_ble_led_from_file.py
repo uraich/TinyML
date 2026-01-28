@@ -68,7 +68,7 @@ _ADV_INTERVAL_US = 250_000
 # Register GATT server.
 magic_wand_service = aioble.Service(_MAGIC_WAND_SERVICE_UUID)
 magic_wand_characteristic = aioble.Characteristic(
-    magic_wand_service, _MAGIC_WAND_CHARACTERISTIC_UUID, read=True)
+    magic_wand_service, _MAGIC_WAND_CHARACTERISTIC_UUID, read=True, notify=True)
 
 aioble.register_services(magic_wand_service)
 global connected
@@ -117,13 +117,21 @@ WAITING = const(0)
 DRAWING = const(1)
 DONE    = const(2)
 STROKE_TRANSMIT_STRIDE = const(2)
-STROKE_LENGTH = const(160)
+
+global stroke_length
+stroke_length = 0
+strokePointDict = {}
+
 # gets the stroke points for a particular digit
 def findStroke(digit_no):
+    global stroke_length
     for i in range(10):
         if strokes["strokes"][i]["label"] == str(digit_no):
             print("Stroke {:d} found!".format(digit_no))
-    return strokes["strokes"][digit_no]["strokePoints"]
+    strokePointDict = strokes["strokes"][digit_no]["strokePoints"]
+    stroke_length = len(strokePointDict)    
+    print("Stroke length for digit {:d}: {:d}".format(digit_no,stroke_length))
+    return strokePointDict
 
 def printTransmitBuffer(transmitBuffer):
     print("--------------------- Transmit Buffer ------------------------")
@@ -145,13 +153,13 @@ def printTransmitBuffer(transmitBuffer):
         print("0x{:02x},".format(transmitBuffer[i]),end=" ")
     print("0x{:02x}".format(transmitBuffer[len(transmitBuffer)-1]))
 
-def createTransmitBuffer(digit_no):
-    status = DONE
+def createTransmitBuffer(digit_no,status,startPoint,endPoint):
     strokePoints = findStroke(digit_no)
     byteStrokePoints = bytearray([])
-    
-    print(strokePoints[0])
-    for i in range(len(strokePoints)):
+    if endPoint > stroke_length:
+          endPoint = stroke_length;
+    print("startPoint: {:d}, endPoint: {:d}".format(startPoint,endPoint))
+    for i in range(startPoint,endPoint):
         tmp_x = round(float(strokePoints[i]["x"])*128.0)
         if i == 0:
             print("type of x[0]: ",type(tmp_x))
@@ -167,22 +175,25 @@ def createTransmitBuffer(digit_no):
         if tmp_y > 127:
             tmp_y = 127
         byteStrokePoints += tmp_y.to_bytes()
-
-    print("x[0]: ",byteStrokePoints[0])
-    print("y[0]: ",byteStrokePoints[1])
-
-    transmitBufferHeader = pack("<ii",status,len(byteStrokePoints)//STROKE_TRANSMIT_STRIDE)
-    padding = bytearray(STROKE_LENGTH*STROKE_TRANSMIT_STRIDE - len(byteStrokePoints))
-    print("Padding length: ",len(padding))
-    transmitBuffer = transmitBufferHeader + byteStrokePoints + padding
-    print("Length of transmit buffer: ",len(transmitBuffer))
-    print("Should be: ",160*2+8)
-    printTransmitBuffer(transmitBuffer)
+        
+    if endPoint > startPoint:
+        print("No of stroke points in packet: ",endPoint - startPoint)
+    transmitBufferHeader = pack("<ii",status,endPoint - startPoint)
+    # transmitBufferHeader = pack("<ii",status,len(byteStrokePoints)//STROKE_TRANSMIT_STRIDE)
+    # padding = bytearray(STROKE_LENGTH*STROKE_TRANSMIT_STRIDE - len(byteStrokePoints))
+    # print("Padding length: ",len(padding))
+    # transmitBuffer = transmitBufferHeader + byteStrokePoints + padding
+    transmitBuffer = transmitBufferHeader + byteStrokePoints
+    # printTransmitBuffer(transmitBuffer)
+    # print("Length of transmit buffer: ",len(transmitBuffer))
+    # print("Should be: ",(endPoint-startPoint)*2+8)
+    # printTransmitBuffer(transmitBuffer)
     return transmitBuffer
+
 
 async def sensor_task():
     # Read the strokes json file
-    global strokes
+    global strokes,stroke_length
     try:
         jsonFile = open("strokes/digits.json","r")
         strokes = json.load(jsonFile)
@@ -195,12 +206,35 @@ async def sensor_task():
             print("Not connected yet")
             await asyncio.sleep_ms(2000)
             continue
-        for digit in range(10):
-            transmitBuffer = createTransmitBuffer(digit)
-            # Send this transmit buffer to the BlueTooth central
-            magic_wand_characteristic.write(transmitBuffer, send_update=True)
+        for digit_no in range(10):
+            await asyncio.sleep_ms(500)
+            print("Send waiting msg")
+            transmitBuffer = createTransmitBuffer(digit_no,WAITING,0,0)
+            printTransmitBuffer(transmitBuffer)
+            magic_wand_characteristic.write(transmitBuffer, send_update=True)                 
+            await asyncio.sleep_ms(500)
+                    
+            print("Send drawing slices")                    
+            for stroke_slice in range(0,stroke_length,10):
+                print("stroke length: {:d}, slice: {:d} .. {:d}".format(
+                    stroke_length,stroke_slice,stroke_slice+10))
+                transmitBuffer = createTransmitBuffer(digit_no,
+                                                      DRAWING,
+                                                      stroke_slice,
+                                                      stroke_slice+10)
+                print("Length of transmit buffer: ",len(transmitBuffer))
+                printTransmitBuffer(transmitBuffer)
+                magic_wand_characteristic.write(transmitBuffer, send_update=True)                 
+                await asyncio.sleep_ms(500)
+
+            print("Send the full stroke")                    
+            transmitBuffer = createTransmitBuffer(digit_no,
+                                                  DONE,
+                                                  0,
+                                                  stroke_length)
+            magic_wand_characteristic.write(transmitBuffer, send_update=True)                 
             await asyncio.sleep_ms(5000)
-        
+    
 # Run both tasks.
 async def main():
     t1 = asyncio.create_task(sensor_task())
