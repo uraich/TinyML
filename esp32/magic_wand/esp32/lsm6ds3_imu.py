@@ -323,7 +323,7 @@ class LSM6DS3_IMU(object):
             value[1] = tmp[2*i+7]
             acc_result.append(self.bytesToShort(value)*self.accFullScale/32768.0)
         
-        return (tuple(gyro_result),tuple(acc_result))
+        return tuple(gyro_result),tuple(acc_result)
 
     def resetFifo(self):
         tmp = self.readByte(LSM6DS3_FIFO_CTRL5)
