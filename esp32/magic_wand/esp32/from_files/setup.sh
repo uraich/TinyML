@@ -34,6 +34,8 @@ ampy put ../lsm6ds3/LSM6DS3.py /lib/LSM6DS3.py
 echo "Uploading lsm6ds3_imu.py"
 ampy put ../lsm6ds3_imu.py /lib/lsm6ds3_imu.py
 
+echo "Uploading rasterize.py"
+ampy put rasterize.py /lib/rasterize.py
 echo ""
 # check if /data already exists
 
