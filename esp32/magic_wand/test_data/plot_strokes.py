@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 stroke_pixels = []
 for i in range(10):
     f = open("{:d}.bin".format(i),"rb")
-    stroke_pixels.append(np.frombuffer(f.read(),dtype=np.uint8).reshape((32,32,3)))
+    stroke_pixels.append((np.frombuffer(f.read(),dtype=np.int8) + 128).reshape((32,32,3)))
+
 
 fig,ax = plt.subplots(2,5)
 fig.suptitle("Stroke test data for all 10 digits")
