@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+  body {
+    font-family: 'Roboto', sans-serif; 
+    color: #888888; 
+    background: #000000; 
+    font-size: small;
+  }
+  .square {
+  width: 640px;
+   height: 640px;
+  }
+  .button {
+    background-color: aqua; 
+    border: none; 
+    color: black; 
+    padding: 1px; 
+    text-align: center;
+    text-decoration: none; 
+    font-size: 12px; 
+    margin: 12px 20px; 
+    height: 20px; 
+    width: 100px;
+    border-radius: 10%; 
+    outline:none; 
+    font-family: 'Roboto', sans-serif;
+    float: left;
+  }
+    
+  #connectBtn {
+    float:left;
+  }
+    
+  #downloadBtn {
+    float: left;
+  }
+
+  .container {
+    width:860px;
+    height:384px;
+    margin-top:30px;
+    margin-bottom:7.5px;  
+    margin: 0 auto; 
+    position: relative;
+  }
+
+  .widget {
+    background: #111111;
+    border: 1px solid #000000;
+    border-radius: 0px;
+    padding: 12px;
+    margin: 6px;
+    float: left;
+    width: 340px;
+    height: 340px;
+  }
+
+  .status {
+    /* background-image: url("logo.png"); */
+    background-size: 80px;
+    background-position: 98% 50%;
+    /* background-repeat: no-repeat; */
+    width: 885px;  height: 42px;
+    color: white;
+  }
+
+  .square {
+    width: 320px;  height: 320px;
+    position: relative;
+    float: left;
+  }
+
+  .label {
+    height: 20px;
+    min-width: 100px;
+    display: inline;
+    font-size: 15px;
+    float: left;
+  }
+  
+  .intro {
+    font-size: 15px;
+  }
+    
+  .bluetooth-label {
+    margin-top: 14px;    
+  }
+
+  .count-label {
+    margin-top: -14px;
+    float: right;
+    margin-right: 158px;
+    text-align: right;
+  }
+    
+  .gesture_store {
+    width: 400px;
+    height: 500px;
+    float: left;
+    overflow-y: scroll;
+  }
+    
+  .trash {
+    float: right;
+    font-size: x-large;
+    cursor: pointer;
+  }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Using a custom javascript function 
+    </title>
+    <style>
+        p {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        How to trigger a file download when
+        clicking an HTML button or JavaScript?
+    </p>
+    <textarea id="text">
+             Welcome to GeeksforGeeks
+         </textarea>
+    <br />
+    <input type="button" id="btn" value="Download" />
+    <script>
+        function download(file, text) {
+
+            //creating an invisible element
+
+            let element = document.createElement('a');
+            element.setAttribute('href',
+                'data:text/plain;charset=utf-8, '
+                + encodeURIComponent(text));
+            element.setAttribute('download', file);
+            document.body.appendChild(element);
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        // Start file download.
+
+        document.getElementById("btn")
+            .addEventListener("click", function () {
+                let text =
+                    document.getElementById("text").value;
+                let filename = "GFG.txt";
+
+                download(filename, text);
+            }, false);
+    </script>
+</body>
+
+</html>
